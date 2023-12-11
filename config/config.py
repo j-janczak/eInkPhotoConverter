@@ -1,0 +1,2 @@
+PADDING_S = 5
+PADDING_M = 10
