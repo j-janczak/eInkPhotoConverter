@@ -1,12 +1,12 @@
-from view.main_view import MainView
-from model.data_model import DataModel
-from controller.main_controller import MainController
-import tkinter as tk
+from model.app_model import AppModel
+from view.app_view import AppView
+from controller.app_controller import AppController
+
+def main():
+    model = AppModel()
+    view = AppView()
+    controller = AppController(view, model)
+    view.mainloop()
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    model = DataModel()
-    view = MainView(root)
-    controller = MainController(model, view)
-    view.set_controller(controller)
-    root.mainloop()
+    main()
