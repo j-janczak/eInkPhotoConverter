@@ -1,6 +1,7 @@
 from typing import Optional, Tuple, Union
 import customtkinter as ctk
 
+
 class InfoWindow(ctk.CTkToplevel):
     def __init__(self):
         super().__init__()

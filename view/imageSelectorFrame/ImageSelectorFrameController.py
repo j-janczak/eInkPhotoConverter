@@ -1,5 +1,6 @@
 import tkinter.filedialog as filedialog
 
+
 class ImageSelectorFrameController():
     def __init__(self, view):
         self.view = view

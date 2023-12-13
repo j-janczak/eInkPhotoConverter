@@ -1,17 +1,17 @@
-from view.customSegmentedButtons.CustomSegmentedButtons import CustomSegmentedButtons
 from view.outputPathSelector.OutputPathSelector import OutputPathSelector
 from view.imageSettingsFrame.ImageSettingsFrame import ImageSettingsFrame
 from .imageSelectorFrame.ImageSelectorFrame import ImageSelectorFrame
 from view.infoFrame.InfoFrame import InfoFrame
 from config.config import PADDING_S, PADDING_M
+from utils.Converter import convertImages
 import customtkinter as ctk
-from PIL import Image
+
 
 class AppView(ctk.CTk):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
-        #self.bind("<Configure>", self.on_resize)
+        # self.bind("<Configure>", self.on_resize)
         self.minsize(640, 500)
 
         self.title("MVC Example")
@@ -23,7 +23,7 @@ class AppView(ctk.CTk):
             row=0,
             column=0,
             sticky="nsew",
-            padx=[PADDING_M, PADDING_S], 
+            padx=[PADDING_M, PADDING_S],
             pady=[PADDING_M, PADDING_S]
         )
 
@@ -37,7 +37,10 @@ class AppView(ctk.CTk):
             pady=[PADDING_S, PADDING_M],
         )
 
-        self.imageSettingsFrame = ImageSettingsFrame(self)
+        self.imageSettingsFrame = ImageSettingsFrame(
+            self,
+            convertImagesCallback=self.convertImages
+        )
         self.imageSettingsFrame.grid(
             row=0,
             column=1,
@@ -62,6 +65,14 @@ class AppView(ctk.CTk):
             sticky="new",
             padx=[PADDING_S, PADDING_M],
             pady=[0, 0],
+        )
+
+    def convertImages(self) -> None:
+        settings = self.imageSettingsFrame.getSettings()
+        settings.outputPath = self.outputPathSelector.getOutputPath()
+        convertImages(
+            imagePaths=self.imageSelectorFrame.getImagePaths(),
+            settings=settings
         )
 
     def on_resize(self, event):

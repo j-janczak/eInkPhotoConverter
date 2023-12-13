@@ -4,12 +4,13 @@ import customtkinter as ctk
 from PIL import Image
 import os
 
+
 class AppController:
     def __init__(self, view, model):
         self.view = view
         self.model = model
 
-        #self.view.sel_imgs_btn.configure(command=self.openImgSelDialog)
+        # self.view.sel_imgs_btn.configure(command=self.openImgSelDialog)
 
     #     self.view.submit_button.configure(command=self.update_model)
 

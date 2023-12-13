@@ -1,5 +1,6 @@
 from tkinter import filedialog, StringVar
 
+
 class OutputPathSelectorController:
     def __init__(self, master: any) -> None:
         self.view = master
