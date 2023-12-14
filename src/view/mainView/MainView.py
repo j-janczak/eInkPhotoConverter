@@ -12,7 +12,7 @@ class MainView(ctk.CTk):
         super().__init__()
         self.configMapper = ConfigMapper()
 
-        self.minsize(640, 500)
+        self.minsize(840, 500)
 
         self.title(_("eInk Images Converter by Jakub Janczak"))
         self.grid_columnconfigure(0, weight=1)
