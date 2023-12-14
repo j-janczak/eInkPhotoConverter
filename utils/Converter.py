@@ -1,4 +1,4 @@
-from model.SettingsModel import SettingsModel, Transformation
+from model.ImageSettingsModel import ImageSettingsModel, Transformation
 from typing import List, Callable
 from PIL import Image
 import os.path
@@ -14,7 +14,8 @@ FILE_EXTENSION = "_eInk.bmp"
 
 def convertImages(
     imagePaths: List[str],
-    settings: SettingsModel,
+    imageSettings: ImageSettingsModel,
+    outputPath: str,
     progressCallback: Callable[[str, int, int], None],
     endCallback: Callable[[], None]
 ) -> None:
@@ -36,7 +37,7 @@ def convertImages(
         targetWidth, tergetHeight = (TARGET_LONG_SIDE, TARGET_SHORT_SIDE) if orgWidth > orgHeight else (
             TARGET_SHORT_SIDE, TARGET_LONG_SIDE)
 
-        if settings.transformation == Transformation.CROP:
+        if imageSettings.transformationMode == Transformation.CROP:
             ratio = min(orgWidth / targetWidth, orgHeight / tergetHeight)
             newSize = (int(orgWidth / ratio), int(orgHeight / ratio))
             scalledImg = imageToConvert.resize(newSize, Image.LANCZOS)
@@ -47,7 +48,7 @@ def convertImages(
             bottom = (scalledImg.height + tergetHeight) / 2
             imgTransformed = scalledImg.crop((left, top, right, bottom))
 
-        elif settings.transformation == Transformation.FIT:
+        elif imageSettings.transformationMode == Transformation.FIT:
             ratio = min(targetWidth / orgWidth, tergetHeight / orgHeight)
             newSize = (int(orgWidth * ratio), int(orgHeight * ratio))
             scalledImg = imageToConvert.resize(newSize, Image.LANCZOS)
@@ -58,7 +59,7 @@ def convertImages(
             y = (tergetHeight - newSize[1]) // 2
             imgTransformed.paste(scalledImg, (x, y))
 
-        elif settings.transformation == Transformation.STRECH:
+        elif imageSettings.transformationMode == Transformation.STRECH:
             imgTransformed = imageToConvert.resize(
                 (targetWidth, tergetHeight), Image.LANCZOS)
 
@@ -73,9 +74,8 @@ def convertImages(
 
         convertedImage = imgTransformed.quantize(
             palette=palleteImg,
-            dither=settings.dithering.toImageDither()
+            dither=imageSettings.ditheringAlgorithm
         ).convert('RGB')
 
-        convertedImage.save(settings.outputPath + "/" +
-                            fileName + FILE_EXTENSION)
+        convertedImage.save(outputPath + "/" + fileName + FILE_EXTENSION)
     endCallback()

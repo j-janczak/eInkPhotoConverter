@@ -1,22 +1,50 @@
-import customtkinter as ctk
 from config.config import PADDING_S, PADDING_XS, PRESSED_BTN_COLOR, SELECTED_BTN_COLOR
-from typing import List
+from utils.ConfigMapper import ConfigMapper
+from view.customFrame.CustomFrame import CustomFrame
+from typing import List, Tuple, Callable
+import customtkinter as ctk
 
 
-class CustomSegmentedButtons(ctk.CTkFrame):
+class CustomSegmentedButtons(CustomFrame):
     def __init__(
-            self,
-            root: any,
-            label: str,
-            textValues: List[str],
-            imgValues: List[ctk.CTkImage],
-            values: List[any],
-            defaultValue: int = 0
+        self,
+        master: any,
+        width: int = 200,
+        height: int = 200,
+        corner_radius: int | str | None = None,
+        border_width: int | str | None = None,
+        bg_color: str | Tuple[str, str] = "transparent",
+        fg_color: str | Tuple[str, str] | None = None,
+        border_color: str | Tuple[str, str] | None = None,
+        background_corner_colors: Tuple[str | Tuple[str, str]] | None = None,
+        overwrite_preferred_drawing_method: str | None = None,
+        configMapper: ConfigMapper = ...,
+        label: str = "",
+        textValues: List[str] = [],
+        imgValues: List[ctk.CTkImage] = [],
+        values: List[any] = [],
+        defaultValue: any = None,
+        onClick: Callable[[any], None] = None,
+        **kwargs
     ) -> None:
-        super().__init__(root)
+        super().__init__(
+            master,
+            width,
+            height,
+            corner_radius,
+            border_width,
+            bg_color,
+            fg_color,
+            border_color,
+            background_corner_colors,
+            overwrite_preferred_drawing_method,
+            configMapper,
+            **kwargs
+        )
 
         self.values = values
-        self.selectedItem = defaultValue
+        self.selectedItem = self.values.index(defaultValue)
+        self.onClick = onClick
 
         self.widgetLabel = ctk.CTkLabel(self, text=label)
         self.widgetLabel.pack()
@@ -38,12 +66,14 @@ class CustomSegmentedButtons(ctk.CTkFrame):
             )
             self.btnsArray.append(btn)
 
-        self.btnsArray[defaultValue].configure(fg_color=SELECTED_BTN_COLOR)
+        self.btnsArray[self.selectedItem].configure(
+            fg_color=SELECTED_BTN_COLOR)
 
     def btnClick(self, btnId: int) -> None:
         self.resetBtns()
         self.btnsArray[btnId].configure(fg_color=SELECTED_BTN_COLOR)
         self.selectedItem = btnId
+        self.onClick(self.getValue())
 
     def resetBtns(self) -> None:
         for btn in self.btnsArray:

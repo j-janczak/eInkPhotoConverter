@@ -1,13 +1,45 @@
 from view.customSegmentedButtons.CustomSegmentedButtons import CustomSegmentedButtons
-from model.SettingsModel import SettingsModel, Dithering, Transformation
+from model.ImageSettingsModel import ImageSettingsModel, Transformation
+from .ImageSettingsFrameController import ImageSettingsFrameController
 from config.config import PADDING_XS, PADDING_S, PADDING_M
+from view.customFrame.CustomFrame import CustomFrame
+from utils.ConfigMapper import ConfigMapper
 import customtkinter as ctk
+from typing import Tuple
 from PIL import Image
 
 
-class ImageSettingsFrame(ctk.CTkFrame):
-    def __init__(self, master, **kwargs):
-        super().__init__(master, **kwargs)
+class ImageSettingsFrame(CustomFrame):
+    def __init__(
+        self,
+        master: any,
+        width: int = 200,
+        height: int = 200,
+        corner_radius: int | str | None = None,
+        border_width: int | str | None = None,
+        bg_color: str | Tuple[str, str] = "transparent",
+        fg_color: str | Tuple[str, str] | None = None,
+        border_color: str | Tuple[str, str] | None = None,
+        background_corner_colors: Tuple[str | Tuple[str, str]] | None = None,
+        overwrite_preferred_drawing_method: str | None = None,
+        configMapper: ConfigMapper = ...,
+        **kwargs
+    ) -> None:
+        super().__init__(
+            master,
+            width,
+            height,
+            corner_radius,
+            border_width,
+            bg_color,
+            fg_color,
+            border_color,
+            background_corner_colors,
+            overwrite_preferred_drawing_method,
+            configMapper,
+            **kwargs
+        )
+        self.controller=ImageSettingsFrameController(self, configMapper)
 
         img_dither_none = ctk.CTkImage(light_image=Image.open("images/img_dither_none_black.png"),
                                        dark_image=Image.open("images/img_dither_none_white.png"))
@@ -25,12 +57,13 @@ class ImageSettingsFrame(ctk.CTkFrame):
         )
 
         self.imgDitheringBtns = CustomSegmentedButtons(
-            self,
-            "Dithering",
-            ["Brak", "Floyd-Steinberg"],
-            [img_dither_none, img_dither_floyd_steinberg],
-            [Dithering.NONE, Dithering.FLOYD_STEINBERG],
-            1
+            master=self,
+            label="Dithering",
+            textValues=["Brak", "Floyd-Steinberg"],
+            imgValues=[img_dither_none, img_dither_floyd_steinberg],
+            values=[Image.Dither.NONE, Image.Dither.FLOYDSTEINBERG],
+            defaultValue=configMapper.config.imageSettings.ditheringAlgorithm,
+            onClick=self.controller.updateDitheringAlgorithm
         )
         self.imgDitheringBtns.pack(
             side=ctk.LEFT,
@@ -39,11 +72,14 @@ class ImageSettingsFrame(ctk.CTkFrame):
         )
 
         self.imgTransformationBtns = CustomSegmentedButtons(
-            self,
-            "Tryb przekształcania",
-            ["Przytnij", "Dopasuj", "Rozciągnij"],
-            [img_mode_crop, img_mode_scale, img_mode_scale],
-            [Transformation.CROP, Transformation.FIT, Transformation.STRECH]
+            master=self,
+            label="Tryb przekształcania",
+            textValues=["Przytnij", "Dopasuj", "Rozciągnij"],
+            imgValues=[img_mode_crop, img_mode_scale, img_mode_scale],
+            values=[Transformation.CROP,
+                    Transformation.FIT, Transformation.STRECH],
+            defaultValue=configMapper.config.imageSettings.transformationMode,
+            onClick=self.controller.updateTransformationMode
         )
         self.imgTransformationBtns.pack(
             side=ctk.RIGHT,
@@ -51,8 +87,8 @@ class ImageSettingsFrame(ctk.CTkFrame):
             pady=[PADDING_S, PADDING_M]
         )
 
-    def getSettings(self) -> SettingsModel:
-        return SettingsModel(
-            dithering=self.imgDitheringBtns.getValue(),
-            transformation=self.imgTransformationBtns.getValue()
+    def getSettings(self) -> ImageSettingsModel:
+        return ImageSettingsModel(
+            ditheringAlgorithm=self.imgDitheringBtns.getValue(),
+            transformationMode=self.imgTransformationBtns.getValue()
         )

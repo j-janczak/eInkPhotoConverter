@@ -1,19 +1,45 @@
+from utils.ConfigMapper import ConfigMapper
 from .OutputPathSelectorController import OutputPathSelectorController
 from view.infoWindow.InfoWindow import InfoWindow
+from view.customFrame.CustomFrame import CustomFrame
 from config.config import PADDING_S, PADDING_M
 import customtkinter as ctk
-from typing import Callable
+from typing import Callable, Tuple
 from PIL import Image
 
 
-class OutputPathSelector(ctk.CTkFrame):
+class OutputPathSelector(CustomFrame):
     def __init__(
-            self, 
+            self,
             master: any,
-            convertCallback: Callable[[], None], 
-            **kwargs) -> None:
-        super().__init__(master, **kwargs)
-
+            width: int = 200,
+            height: int = 200,
+            corner_radius: int | str | None = None,
+            border_width: int | str | None = None,
+            bg_color: str | Tuple[str, str] = "transparent",
+            fg_color: str | Tuple[str, str] | None = None,
+            border_color: str | Tuple[str, str] | None = None,
+            background_corner_colors: Tuple[str | Tuple[str, str]] | None = None,
+            overwrite_preferred_drawing_method: str | None = None,
+            configMapper: ConfigMapper = None,
+            convertCallback: Callable[[], None] = None,
+            **kwargs,
+        ) -> None:
+        super().__init__(
+            master,
+            width,
+            height,
+            corner_radius,
+            border_width,
+            bg_color,
+            fg_color,
+            border_color,
+            background_corner_colors,
+            overwrite_preferred_drawing_method,
+            configMapper,
+            **kwargs
+        )
+        self.controller = OutputPathSelectorController(self, self.configMapper)
         self.convertCallback = convertCallback
 
         img_save = ctk.CTkImage(light_image=Image.open("images/img_save_black.png"),
@@ -24,8 +50,6 @@ class OutputPathSelector(ctk.CTkFrame):
         
         imgHelp = ctk.CTkImage(light_image=Image.open("images/img_help_black.png"),
                                dark_image=Image.open("images/img_help_white.png"))
-
-        self.controller = OutputPathSelectorController(self)
 
         self.imgOutputPath = ctk.CTkEntry(
             self,
@@ -42,7 +66,8 @@ class OutputPathSelector(ctk.CTkFrame):
             self,
             text="Wybierz lokalizację zapisu",
             image=img_save,
-            compound=ctk.RIGHT
+            compound=ctk.RIGHT,
+            command=self.controller.openDirSelDialog
         )
         self.imgActionBtn.pack(
             padx=PADDING_M,
@@ -83,8 +108,6 @@ class OutputPathSelector(ctk.CTkFrame):
             padx=PADDING_M,
             pady=[PADDING_S, 0]
         )
-
-        self.controller.initController()
 
     def getOutputPath(self) -> str:
         return self.controller.imgOutputPathText.get()

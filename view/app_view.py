@@ -3,6 +3,7 @@ from .imageSettingsFrame.ImageSettingsFrame import ImageSettingsFrame
 from .imageSelectorFrame.ImageSelectorFrame import ImageSelectorFrame
 from .progressWindow.ProgressWindow import ProgressWindow
 from config.config import PADDING_S, PADDING_M
+from utils.ConfigMapper import ConfigMapper
 from utils.Converter import convertImages
 import customtkinter as ctk
 import threading
@@ -10,6 +11,7 @@ import threading
 class AppView(ctk.CTk):
     def __init__(self) -> None:
         super().__init__()
+        self.configMapper = ConfigMapper()
 
         self.minsize(640, 500)
 
@@ -26,7 +28,7 @@ class AppView(ctk.CTk):
             pady=[PADDING_M, PADDING_S]
         )
 
-        self.imageSettingsFrame = ImageSettingsFrame(self)
+        self.imageSettingsFrame = ImageSettingsFrame(self, configMapper=self.configMapper)
         self.imageSettingsFrame.grid(
             row=1,
             column=0,
@@ -37,6 +39,7 @@ class AppView(ctk.CTk):
 
         self.outputPathSelector = OutputPathSelector(
             self,
+            configMapper=self.configMapper,
             convertCallback=self.convertImages
         )
         self.outputPathSelector.grid(
@@ -57,8 +60,8 @@ class AppView(ctk.CTk):
         )
 
     def convertImages(self) -> None:
-        settings = self.imageSettingsFrame.getSettings()
-        settings.outputPath = self.outputPathSelector.getOutputPath()
+        imageSettings = self.imageSettingsFrame.getSettings()
+        outputPath = self.outputPathSelector.getOutputPath()
         imagePaths = self.imageSelectorFrame.getImagePaths()
 
         progressWindow = ProgressWindow(self, "Konwertowanie")
@@ -66,8 +69,9 @@ class AppView(ctk.CTk):
         thread = threading.Thread(
             target=convertImages,
             args=(
-                imagePaths, 
-                settings, 
+                imagePaths,
+                imageSettings,
+                outputPath, 
                 lambda name, step, of: self.after(
                     0, 
                     lambda: progressWindow.progress(
