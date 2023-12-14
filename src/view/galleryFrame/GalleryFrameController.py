@@ -2,6 +2,7 @@ from config.config import THUMB_MAX_WIDTH, THUMB_MAX_HEIGHT, THUMB_LABEL_MAX_LEN
 from view.progressDialog.ProgressDialog import ProgressDialog
 from model.PhotoModel import PhotoModel
 from utils.utils import shortenText
+from utils.GettextConfig import _
 from typing import List, Callable
 import customtkinter as ctk
 from PIL import Image
@@ -17,7 +18,7 @@ class GalleryFrameController():
     def loadThumbs(self, imgPaths: List[str]) -> None:
         progressDialog = ProgressDialog(
             window=self.view.winfo_toplevel(),
-            text="Tworzenie miniatur"
+            text=_("Creating thumbnails...")
         )
 
         thread = threading.Thread(

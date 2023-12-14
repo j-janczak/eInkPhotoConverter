@@ -4,6 +4,7 @@ from .ImageSettingsFrameController import ImageSettingsFrameController
 from config.config import PADDING_XS, PADDING_S, PADDING_M
 from view.customFrame.CustomFrame import CustomFrame
 from utils.ConfigMapper import ConfigMapper
+from utils.GettextConfig import _
 import customtkinter as ctk
 from typing import Tuple
 from PIL import Image
@@ -47,15 +48,15 @@ class ImageSettingsFrame(CustomFrame):
         img_mode_crop = ctk.CTkImage(Image.open("images/img_mode_crop_white.png"))
         img_mode_scale = ctk.CTkImage(Image.open("images/img_mode_scale_white.png"))
 
-        self.label1 = ctk.CTkLabel(self, text="Ustawienia konwertowania")
+        self.label1 = ctk.CTkLabel(self, text=_("Convert settings"))
         self.label1.pack(
             pady=[PADDING_S, PADDING_XS]
         )
 
         self.imgDitheringBtns = CustomSegmentedButtons(
             master=self,
-            label="Dithering",
-            textValues=["Brak", "Floyd-Steinberg"],
+            label=_("Dithering algorithm"),
+            textValues=[_("None"), _("Floyd-Steinberg")],
             imgValues=[img_dither_none, img_dither_floyd_steinberg],
             values=[Image.Dither.NONE, Image.Dither.FLOYDSTEINBERG],
             defaultValue=configMapper.config.imageSettings.ditheringAlgorithm,
@@ -69,8 +70,8 @@ class ImageSettingsFrame(CustomFrame):
 
         self.imgTransformationBtns = CustomSegmentedButtons(
             master=self,
-            label="Tryb przekształcania",
-            textValues=["Przytnij", "Dopasuj", "Rozciągnij"],
+            label=_("Transform mode"),
+            textValues=[_("Crop"), _("Adjust"), _("Stretch")],
             imgValues=[img_mode_crop, img_mode_scale, img_mode_scale],
             values=[Transformation.CROP,
                     Transformation.FIT, Transformation.STRECH],

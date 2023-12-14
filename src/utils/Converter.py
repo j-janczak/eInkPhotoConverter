@@ -1,6 +1,7 @@
 from model.ImageSettingsModel import ImageSettingsModel, Transformation
 from model.ConvertErrorModel import ConvertErrorModel
 from typing import List, Callable
+from utils.GettextConfig import _
 from PIL import Image
 import os.path
 import sys
@@ -32,7 +33,7 @@ def convertImages(
         if not os.path.isfile(imagePath):
             errorFiles.append(ConvertErrorModel(
                 file=fileName,
-                reason="Unable to open"
+                reason=_("Unable to open")
             ))
             continue
 
@@ -87,6 +88,6 @@ def convertImages(
         except:
             errorFiles.append(ConvertErrorModel(
                 file=fileName,
-                reason="Unable to save"
+                reason=_("Unable to save")
             ))
     endCallback(errorFiles)

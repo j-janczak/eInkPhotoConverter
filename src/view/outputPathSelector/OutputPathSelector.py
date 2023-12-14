@@ -3,8 +3,9 @@ from .OutputPathSelectorController import OutputPathSelectorController
 from view.infoWindow.InfoWindow import InfoWindow
 from view.customFrame.CustomFrame import CustomFrame
 from config.config import PADDING_S, PADDING_M
-import customtkinter as ctk
 from typing import Callable, Tuple
+from utils.GettextConfig import _
+import customtkinter as ctk
 from PIL import Image
 
 
@@ -48,7 +49,7 @@ class OutputPathSelector(CustomFrame):
 
         self.imgOutputPath = ctk.CTkEntry(
             self,
-            placeholder_text="Lokalizacja zdjęć wynikowych",
+            placeholder_text=_("Location of photos"),
             textvariable=self.controller.imgOutputPathText
         )
         self.imgOutputPath.pack(
@@ -59,7 +60,7 @@ class OutputPathSelector(CustomFrame):
 
         self.imgActionBtn = ctk.CTkButton(
             self,
-            text="Wybierz lokalizację zapisu",
+            text=_("Select a save location"),
             image=img_save,
             compound=ctk.RIGHT,
             command=self.controller.openDirSelDialog
@@ -72,7 +73,7 @@ class OutputPathSelector(CustomFrame):
 
         self.helpButton = ctk.CTkButton(
             self,
-            text="Informacje",
+            text=_("Help"),
             image=imgHelp,
             compound=ctk.RIGHT, command=lambda: InfoWindow()
         )
@@ -85,7 +86,7 @@ class OutputPathSelector(CustomFrame):
 
         self.imgConvertBtn = ctk.CTkButton(
             self,
-            text="Konwertuj!",
+            text=_("Convert!"),
             image=img_start,
             compound=ctk.RIGHT,
         )

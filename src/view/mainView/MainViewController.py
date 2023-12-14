@@ -3,6 +3,7 @@ from model.ConvertErrorModel import ConvertErrorModel
 from view.infoDialog.InfoDialog import InfoDialog
 from utils.Converter import convertImages
 from ..mainView.MainView import MainView
+from utils.GettextConfig import _
 from typing import List
 import threading
 
@@ -23,13 +24,13 @@ class MainViewController:
         if len(imagePaths) == 0:
             InfoDialog(
                 window=self.view,
-                text="Nie wybrano plików"
+                text=_("No files selected")
             )
             return
 
-        progressDialog = ProgressDialog(
+        self.progressDialog = ProgressDialog(
             window=self.view,
-            text="Konwertowanie"
+            text=_("Converting...")
         )
 
         thread = threading.Thread(
@@ -40,7 +41,7 @@ class MainViewController:
                 outputPath,
                 lambda name, step, of: self.view.after(
                     0,
-                    lambda: progressDialog.progress(
+                    lambda: self.progressDialog.progress(
                         name,
                         step,
                         of
@@ -52,10 +53,12 @@ class MainViewController:
         thread.start()
 
     def displayEndConvertDialog(self, errorFiles: List[ConvertErrorModel]):
+        self.progressDialog.destroy()
+        
         if len(errorFiles) == 0:
-            text = "Konwersja obrazów zakończona pomyślnie"
+            text = _("Image conversion completed successfully!")
         else:
-            text = "Wystąpiły błędy przy niektórych obrazach"
+            text = _("There were errors converting some images")
             for error in errorFiles:
                 text += f"\n\"{error.file}\" - {error.reason}"
 

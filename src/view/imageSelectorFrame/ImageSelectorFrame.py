@@ -1,10 +1,10 @@
 from .ImageSelectorFrameController import ImageSelectorFrameController
 from view.galleryFrame.GalleryFrame import GalleryFrame
 from config.config import PADDING_M, PADDING_S
+from utils.GettextConfig import _
 import customtkinter as ctk
 from typing import List
 from PIL import Image
-
 
 class ImageSelectorFrame(ctk.CTkFrame):
     def __init__(self, master, **kwargs):
@@ -14,7 +14,7 @@ class ImageSelectorFrame(ctk.CTkFrame):
 
         self.galleryFrame = GalleryFrame(
             self,
-            label_text="Wybrane zdjęcia"
+            label_text=_("Selected photos")
         )
         self.galleryFrame.pack(
             expand=True,
@@ -25,7 +25,7 @@ class ImageSelectorFrame(ctk.CTkFrame):
 
         self.sel_imgs_btn = ctk.CTkButton(
             self,
-            text="Wybierz zdjęcia",
+            text=_("Select photos"),
             image=img_photo,
             compound=ctk.RIGHT
         )

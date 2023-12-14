@@ -1,5 +1,6 @@
 from view.customDialog.CustomDialog import CustomDialog
 from config.config import PADDING_S, PADDING_M
+from utils.GettextConfig import _
 import customtkinter as ctk
 from typing import Tuple
 
@@ -19,7 +20,7 @@ class InfoDialog(CustomDialog):
             window=window,
             **kwargs
         )
-        self.title("Informacja")
+        self.title(_("Info"))
 
         ctk.CTkLabel(
             master=self,
