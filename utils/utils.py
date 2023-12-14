@@ -8,3 +8,9 @@ def resource_path(relative_path):
         base_path = os.path.abspath(".")
 
     return os.path.join(base_path, relative_path)
+
+def shortenText(text: str, length: int) -> str:
+    if len(text) > length:
+        return text[:length] + "..."
+    else:
+        return text

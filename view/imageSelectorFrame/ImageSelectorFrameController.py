@@ -10,4 +10,4 @@ class ImageSelectorFrameController():
     def openImgSelDialog(self):
         fileTypes = [("Image files", "*.jpg *.jpeg *.png *.gif *.bmp")]
         imgPaths = filedialog.askopenfilenames(filetypes=fileTypes)
-        self.view.galleryFrame.controller.displayThumbs(imgPaths)
+        self.view.galleryFrame.controller.loadThumbs(imgPaths)

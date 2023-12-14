@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from config.config import BTN_IMG_SIZE, PADDING_M, PADDING_S, PADDING_XS, PRESSED_BTN_COLOR, SELECTED_BTN_COLOR
+from config.config import PADDING_S, PADDING_XS, PRESSED_BTN_COLOR, SELECTED_BTN_COLOR
 from typing import List
 
 
@@ -10,12 +10,13 @@ class CustomSegmentedButtons(ctk.CTkFrame):
             label: str,
             textValues: List[str],
             imgValues: List[ctk.CTkImage],
-            values: List[any]
+            values: List[any],
+            defaultValue: int = 0
     ) -> None:
         super().__init__(root)
 
         self.values = values
-        self.selectedItem = 0
+        self.selectedItem = defaultValue
 
         self.widgetLabel = ctk.CTkLabel(self, text=label)
         self.widgetLabel.pack()
@@ -37,7 +38,7 @@ class CustomSegmentedButtons(ctk.CTkFrame):
             )
             self.btnsArray.append(btn)
 
-        self.btnsArray[0].configure(fg_color=SELECTED_BTN_COLOR)
+        self.btnsArray[defaultValue].configure(fg_color=SELECTED_BTN_COLOR)
 
     def btnClick(self, btnId: int) -> None:
         self.resetBtns()

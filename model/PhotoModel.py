@@ -1,25 +1,26 @@
-from customtkinter import CTkImage, CTkLabel
-from PIL import Image
+from customtkinter import CTkImage, CTkFrame, CTkLabel
+from config.config import IMG_THUMB_BG, PADDING_S
+from dataclasses import dataclass
 
 
+@dataclass
 class PhotoModel:
-    def __init__(
-            self,
-            path: str,
-            name: str,
-            thumb: CTkImage,
-            width: int = 130
-    ) -> None:
-        self.path = path
-        self.name = name
-        self.thumb = thumb
-        self.width = width
+    path: str
+    name: str
+    thumb: CTkImage
 
-    def widget(self, master: any) -> CTkLabel:
-        return CTkLabel(
+    def widget(self, master: any) -> CTkFrame:
+        frame = CTkFrame(
             master,
-            width=self.width,
+            fg_color=IMG_THUMB_BG
+        )
+        CTkLabel(
+            frame,
             image=self.thumb,
             text=self.name,
             compound='top'
+        ).pack(
+            padx=PADDING_S,
+            pady=PADDING_S
         )
+        return frame

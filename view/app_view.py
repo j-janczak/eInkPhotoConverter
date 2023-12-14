@@ -1,17 +1,16 @@
-from view.outputPathSelector.OutputPathSelector import OutputPathSelector
-from view.imageSettingsFrame.ImageSettingsFrame import ImageSettingsFrame
+from .outputPathSelector.OutputPathSelector import OutputPathSelector
+from .imageSettingsFrame.ImageSettingsFrame import ImageSettingsFrame
 from .imageSelectorFrame.ImageSelectorFrame import ImageSelectorFrame
-from view.infoFrame.InfoFrame import InfoFrame
+from .progressWindow.ProgressWindow import ProgressWindow
 from config.config import PADDING_S, PADDING_M
 from utils.Converter import convertImages
 import customtkinter as ctk
-
+import threading
 
 class AppView(ctk.CTk):
     def __init__(self) -> None:
         super().__init__()
 
-        # self.bind("<Configure>", self.on_resize)
         self.minsize(640, 500)
 
         self.title("MVC Example")
@@ -27,21 +26,20 @@ class AppView(ctk.CTk):
             pady=[PADDING_M, PADDING_S]
         )
 
-        self.outputPathSelector = OutputPathSelector(self)
-        self.outputPathSelector.grid(
+        self.imageSettingsFrame = ImageSettingsFrame(self)
+        self.imageSettingsFrame.grid(
             row=1,
             column=0,
-            rowspan=2,
-            sticky="ew",
+            sticky="nsew",
             padx=[PADDING_M, PADDING_S],
             pady=[PADDING_S, PADDING_M],
         )
 
-        self.imageSettingsFrame = ImageSettingsFrame(
+        self.outputPathSelector = OutputPathSelector(
             self,
-            convertImagesCallback=self.convertImages
+            convertCallback=self.convertImages
         )
-        self.imageSettingsFrame.grid(
+        self.outputPathSelector.grid(
             row=0,
             column=1,
             sticky="nsew",
@@ -49,20 +47,11 @@ class AppView(ctk.CTk):
             pady=[PADDING_M, PADDING_S],
         )
 
-        self.infoFrame = InfoFrame(self)
-        self.infoFrame.grid(
+        self.authorLabel = ctk.CTkLabel(self, text="by Jakub Janczak")
+        self.authorLabel.grid(
             row=1,
             column=1,
-            sticky="new",
-            padx=[PADDING_S, PADDING_M],
-            pady=[PADDING_S, 0],
-        )
-
-        self.authorLabel = ctk.CTkLabel(self, text="Made with love by Jojczak")
-        self.authorLabel.grid(
-            row=2,
-            column=1,
-            sticky="new",
+            sticky="ew",
             padx=[PADDING_S, PADDING_M],
             pady=[0, 0],
         )
@@ -70,10 +59,27 @@ class AppView(ctk.CTk):
     def convertImages(self) -> None:
         settings = self.imageSettingsFrame.getSettings()
         settings.outputPath = self.outputPathSelector.getOutputPath()
-        convertImages(
-            imagePaths=self.imageSelectorFrame.getImagePaths(),
-            settings=settings
+        imagePaths = self.imageSelectorFrame.getImagePaths()
+
+        progressWindow = ProgressWindow(self, "Konwertowanie")
+
+        thread = threading.Thread(
+            target=convertImages,
+            args=(
+                imagePaths, 
+                settings, 
+                lambda name, step, of: self.after(
+                    0, 
+                    lambda: progressWindow.progress(
+                        name, 
+                        step, 
+                        of
+                    )
+                ),
+                lambda: progressWindow.destroy()
+            )
         )
+        thread.start()
 
     def on_resize(self, event):
         print(f"Okno zmieniło rozmiar: {event.width}x{event.height}")

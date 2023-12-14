@@ -1,5 +1,5 @@
-from model.SettingsModel import SettingsModel, Orientation, Dithering, Transformation
-from typing import List
+from model.SettingsModel import SettingsModel, Transformation
+from typing import List, Callable
 from PIL import Image
 import os.path
 import sys
@@ -12,8 +12,20 @@ TARGET_LONG_SIDE, TARGET_SHORT_SIDE = 800, 480
 FILE_EXTENSION = "_eInk.bmp"
 
 
-def convertImages(imagePaths: List[str], settings: SettingsModel) -> None:
+def convertImages(
+    imagePaths: List[str],
+    settings: SettingsModel,
+    progressCallback: Callable[[str, int, int], None],
+    endCallback: Callable[[], None]
+) -> None:
+    filesCount = len(imagePaths)
+    filesProgress = 0
     for imagePath in imagePaths:
+        filesProgress += 1
+        fileName = os.path.splitext(os.path.basename(imagePath))[0]
+
+        progressCallback(fileName, filesProgress, filesCount)
+
         if not os.path.isfile(imagePath):
             print(f'Error: file {imagePath} does not exist')
             sys.exit(1)
@@ -27,7 +39,7 @@ def convertImages(imagePaths: List[str], settings: SettingsModel) -> None:
         if settings.transformation == Transformation.CROP:
             ratio = min(orgWidth / targetWidth, orgHeight / tergetHeight)
             newSize = (int(orgWidth / ratio), int(orgHeight / ratio))
-            scalledImg = imageToConvert.resize(newSize, Image.ANTIALIAS)
+            scalledImg = imageToConvert.resize(newSize, Image.LANCZOS)
 
             left = (scalledImg.width - targetWidth) / 2
             top = (scalledImg.height - tergetHeight) / 2
@@ -38,7 +50,7 @@ def convertImages(imagePaths: List[str], settings: SettingsModel) -> None:
         elif settings.transformation == Transformation.FIT:
             ratio = min(targetWidth / orgWidth, tergetHeight / orgHeight)
             newSize = (int(orgWidth * ratio), int(orgHeight * ratio))
-            scalledImg = imageToConvert.resize(newSize, Image.ANTIALIAS)
+            scalledImg = imageToConvert.resize(newSize, Image.LANCZOS)
 
             imgTransformed = Image.new(
                 "RGB", (targetWidth, tergetHeight), "white")
@@ -48,19 +60,22 @@ def convertImages(imagePaths: List[str], settings: SettingsModel) -> None:
 
         elif settings.transformation == Transformation.STRECH:
             imgTransformed = imageToConvert.resize(
-                (targetWidth, tergetHeight), Image.ANTIALIAS)
+                (targetWidth, tergetHeight), Image.LANCZOS)
 
         if imgTransformed.mode != "RGB":
             imgTransformed = imgTransformed.convert("RGB")
 
+        colorsPallete = tuple(
+            color for colorTuple in COLORS for color in colorTuple) + (0, 0, 0) * 249
+
         palleteImg = Image.new("P", (1, 1))
-        palleteImg.putpalette(
-            [color for colorTuple in COLORS for color in colorTuple])
+        palleteImg.putpalette(colorsPallete)
 
         convertedImage = imgTransformed.quantize(
             palette=palleteImg,
             dither=settings.dithering.toImageDither()
-        )
+        ).convert('RGB')
 
         convertedImage.save(settings.outputPath + "/" +
-                            os.path.splitext(os.path.basename(imagePath))[0] + FILE_EXTENSION)
+                            fileName + FILE_EXTENSION)
+    endCallback()
