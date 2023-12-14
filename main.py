@@ -1,13 +1,11 @@
-from model.app_model import AppModel
-from view.app_view import AppView
-from controller.app_controller import AppController
+from view.mainView.MainView import MainView
+from view.mainView.MainViewController import MainViewController
 
 
 def main():
-    model = AppModel()
-    view = AppView()
-    controller = AppController(view, model)
-    view.mainloop()
+    mainView = MainView()
+    MainViewController(mainView)
+    mainView.mainloop()
 
 
 if __name__ == "__main__":

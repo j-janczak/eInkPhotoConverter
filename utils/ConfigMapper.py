@@ -8,12 +8,13 @@ CONFIG_DIRECTORY = ".eInkImageConverter"
 CONFIG_FILENAME = "config.json"
 FILE_NAME = f"{HOME_PATH}/{CONFIG_DIRECTORY}/{CONFIG_FILENAME}"
 
+
 class ConfigMapper:
     def __init__(self) -> None:
         os.makedirs(f"{HOME_PATH}/{CONFIG_DIRECTORY}", exist_ok=True)
-        
+
         self.config = ConfigModel()
-        if os.path.isfile(FILE_NAME) == False:
+        if not os.path.isfile(FILE_NAME):
             print("Creating new config")
             self.__writeToFile()
         else:
@@ -36,4 +37,4 @@ class ConfigMapper:
                 file.write(self.config.model_dump_json(indent=4))
                 print(f"{FILE_NAME} updated")
         except:
-                print(f"Error while creating {FILE_NAME}")
+            print(f"Error while creating {FILE_NAME}")

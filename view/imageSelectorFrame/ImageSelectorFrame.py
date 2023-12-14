@@ -10,8 +10,7 @@ class ImageSelectorFrame(ctk.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-        img_photo = ctk.CTkImage(light_image=Image.open("images/img_photo_black.png"),
-                                 dark_image=Image.open("images/img_photo_white.png"))
+        img_photo = ctk.CTkImage(Image.open("images/img_photo_white.png"))
 
         self.galleryFrame = GalleryFrame(
             self,

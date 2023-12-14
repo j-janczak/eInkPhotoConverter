@@ -1,4 +1,5 @@
 from model.ImageSettingsModel import ImageSettingsModel, Transformation
+from model.ConvertErrorModel import ConvertErrorModel
 from typing import List, Callable
 from PIL import Image
 import os.path
@@ -17,10 +18,11 @@ def convertImages(
     imageSettings: ImageSettingsModel,
     outputPath: str,
     progressCallback: Callable[[str, int, int], None],
-    endCallback: Callable[[], None]
+    endCallback: Callable[[List[ConvertErrorModel]], None]
 ) -> None:
     filesCount = len(imagePaths)
     filesProgress = 0
+    errorFiles: List[ConvertErrorModel] = []
     for imagePath in imagePaths:
         filesProgress += 1
         fileName = os.path.splitext(os.path.basename(imagePath))[0]
@@ -28,8 +30,11 @@ def convertImages(
         progressCallback(fileName, filesProgress, filesCount)
 
         if not os.path.isfile(imagePath):
-            print(f'Error: file {imagePath} does not exist')
-            sys.exit(1)
+            errorFiles.append(ConvertErrorModel(
+                file=fileName,
+                reason="Unable to open"
+            ))
+            continue
 
         imageToConvert = Image.open(imagePath)
 
@@ -77,5 +82,11 @@ def convertImages(
             dither=imageSettings.ditheringAlgorithm
         ).convert('RGB')
 
-        convertedImage.save(outputPath + "/" + fileName + FILE_EXTENSION)
-    endCallback()
+        try:
+            convertedImage.save(outputPath + "/" + fileName + FILE_EXTENSION)
+        except:
+            errorFiles.append(ConvertErrorModel(
+                file=fileName,
+                reason="Unable to save"
+            ))
+    endCallback(errorFiles)

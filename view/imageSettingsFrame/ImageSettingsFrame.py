@@ -41,15 +41,11 @@ class ImageSettingsFrame(CustomFrame):
         )
         self.controller=ImageSettingsFrameController(self, configMapper)
 
-        img_dither_none = ctk.CTkImage(light_image=Image.open("images/img_dither_none_black.png"),
-                                       dark_image=Image.open("images/img_dither_none_white.png"))
-        img_dither_floyd_steinberg = ctk.CTkImage(light_image=Image.open("images/img_dither_floyd_steinberg_black.png"),
-                                                  dark_image=Image.open("images/img_dither_floyd_steinberg_white.png"))
+        img_dither_none = ctk.CTkImage(Image.open("images/img_dither_none_white.png"))
+        img_dither_floyd_steinberg = ctk.CTkImage(Image.open("images/img_dither_floyd_steinberg_white.png"))
 
-        img_mode_crop = ctk.CTkImage(light_image=Image.open("images/img_mode_crop_black.png"),
-                                     dark_image=Image.open("images/img_mode_crop_white.png"))
-        img_mode_scale = ctk.CTkImage(light_image=Image.open("images/img_mode_scale_black.png"),
-                                      dark_image=Image.open("images/img_mode_scale_white.png"))
+        img_mode_crop = ctk.CTkImage(Image.open("images/img_mode_crop_white.png"))
+        img_mode_scale = ctk.CTkImage(Image.open("images/img_mode_scale_white.png"))
 
         self.label1 = ctk.CTkLabel(self, text="Ustawienia konwertowania")
         self.label1.pack(

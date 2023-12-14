@@ -1,5 +1,5 @@
 from config.config import THUMB_MAX_WIDTH, THUMB_MAX_HEIGHT, THUMB_LABEL_MAX_LEN, PADDING_M
-from view.progressWindow.ProgressWindow import ProgressWindow
+from view.progressDialog.ProgressDialog import ProgressDialog
 from model.PhotoModel import PhotoModel
 from utils.utils import shortenText
 from typing import List, Callable
@@ -15,7 +15,10 @@ class GalleryFrameController():
         self.images: List[PhotoModel] = []
 
     def loadThumbs(self, imgPaths: List[str]) -> None:
-        progressWindow = ProgressWindow(self.view.winfo_toplevel(), "Tworzenie miniatur")
+        progressDialog = ProgressDialog(
+            window=self.view.winfo_toplevel(),
+            text="Tworzenie miniatur"
+        )
 
         thread = threading.Thread(
             target=self.loadThumbsThread,
@@ -23,13 +26,13 @@ class GalleryFrameController():
                 imgPaths,
                 lambda name, step, of: self.view.after(
                     0,
-                    lambda: progressWindow.progress(
+                    lambda: progressDialog.progress(
                         name,
                         step,
                         of
                     )
                 ),
-                lambda: progressWindow.destroy()
+                lambda: progressDialog.destroy()
             )
         )
         thread.start()

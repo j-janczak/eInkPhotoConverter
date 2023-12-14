@@ -22,7 +22,6 @@ class OutputPathSelector(CustomFrame):
             background_corner_colors: Tuple[str | Tuple[str, str]] | None = None,
             overwrite_preferred_drawing_method: str | None = None,
             configMapper: ConfigMapper = None,
-            convertCallback: Callable[[], None] = None,
             **kwargs,
         ) -> None:
         super().__init__(
@@ -40,16 +39,12 @@ class OutputPathSelector(CustomFrame):
             **kwargs
         )
         self.controller = OutputPathSelectorController(self, self.configMapper)
-        self.convertCallback = convertCallback
 
-        img_save = ctk.CTkImage(light_image=Image.open("images/img_save_black.png"),
-                                dark_image=Image.open("images/img_save_white.png"))
+        img_save = ctk.CTkImage(Image.open("images/img_save_white.png"))
         
-        img_start = ctk.CTkImage(light_image=Image.open("images/img_start_black.png"),
-                                 dark_image=Image.open("images/img_start_white.png"))
+        img_start = ctk.CTkImage(Image.open("images/img_start_white.png"))
         
-        imgHelp = ctk.CTkImage(light_image=Image.open("images/img_help_black.png"),
-                               dark_image=Image.open("images/img_help_white.png"))
+        imgHelp = ctk.CTkImage(Image.open("images/img_help_white.png"))
 
         self.imgOutputPath = ctk.CTkEntry(
             self,
@@ -93,7 +88,6 @@ class OutputPathSelector(CustomFrame):
             text="Konwertuj!",
             image=img_start,
             compound=ctk.RIGHT,
-            command=self.convertCallback
         )
         self.imgConvertBtn.pack(
             fill=ctk.X,
@@ -111,3 +105,6 @@ class OutputPathSelector(CustomFrame):
 
     def getOutputPath(self) -> str:
         return self.controller.imgOutputPathText.get()
+    
+    def setConvertCallback(self, callback: Callable[[], None] = None):
+        self.imgConvertBtn.configure(command=callback)

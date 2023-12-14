@@ -1,19 +1,27 @@
+from typing import Tuple
+from customtkinter import CTk
+from view.customDialog.CustomDialog import CustomDialog
 from config.config import PADDING_M
 from utils.utils import shortenText
 import customtkinter as ctk
 
 
-class ProgressWindow(ctk.CTkToplevel):
+class ProgressDialog(CustomDialog):
     def __init__(
             self,
-            master: any,
-            text: str
+            *args,
+            fg_color: str | Tuple[str, str] | None = None,
+            window: CTk,
+            text: str,
+            **kwargs
     ) -> None:
-        super().__init__(master)
+        super().__init__(
+            *args,
+            fg_color=fg_color,
+            window=window,
+            **kwargs
+        )
 
-        self.minsize(400, 0)
-        self.transient(master)
-        self.grab_set()
         self.overrideredirect(True)
 
         self.dialogFrame = ctk.CTkFrame(self)
@@ -39,13 +47,10 @@ class ProgressWindow(ctk.CTkToplevel):
         self.text = text
 
         self.update_idletasks()
-
-        xPos = master.winfo_x() + (master.winfo_width() // 2) - (self.winfo_width() // 2)
-        yPos = master.winfo_y() + (master.winfo_height() // 2) - \
-            (self.winfo_height() // 2)
-        self.geometry(f"+{xPos}+{yPos}")
+        self.centerDialog()
 
     def progress(self, fileName: str, step: int, of: int) -> None:
         progressText = f"{self.text}: \"{shortenText(fileName, 15)}\" {step}/{of}"
         self.progressTextWidget.configure(text=progressText)
         self.progressBar.set(step/of)
+        self.centerDialog()
