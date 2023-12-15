@@ -10,14 +10,14 @@ class RightFrameController():
         view: RightFrame
     ) -> None:
         self.view = view
-        self.imgOutputPathText = StringVar(
-            value=config.outputPath)
+        self.imgOutputPathText = StringVar()
         self.view.imgOutputPath.configure(textvariable=self.imgOutputPathText)
         self.view.imgActionBtn.configure(command=self.openDirSelDialog)
+        self.imgOutputPathText.set(config.outputPath)
 
     def openDirSelDialog(self) -> None:
         selectedFolder = filedialog.askdirectory()
-        if isinstance(selectedFolder, str) and selectedFolder != "":
+        if isinstance(selectedFolder, str) and len(selectedFolder) > 0:
             updateConfig({
                 "outputPath": selectedFolder
             })

@@ -1,6 +1,7 @@
 from view.infoWindow.InfoWindow import InfoWindow
 from config.config import PADDING_S, PADDING_M
 from utils.GettextConfig import _
+from utils.Utils import getPath
 import customtkinter as ctk
 from typing import Tuple
 from PIL import Image
@@ -35,16 +36,13 @@ class RightFrame(ctk.CTkFrame):
             **kwargs
         )
 
-        img_save = ctk.CTkImage(Image.open("images/img_save_white.png"))
+        img_save = ctk.CTkImage(Image.open(getPath("img_save_white.png")))
 
-        img_start = ctk.CTkImage(Image.open("images/img_start_white.png"))
+        img_start = ctk.CTkImage(Image.open(getPath("img_start_white.png")))
 
-        imgHelp = ctk.CTkImage(Image.open("images/img_help_white.png"))
+        imgHelp = ctk.CTkImage(Image.open(getPath("img_help_white.png")))
 
-        self.imgOutputPath = ctk.CTkEntry(
-            self,
-            placeholder_text=_("Location of photos"),
-        )
+        self.imgOutputPath = ctk.CTkEntry(self)
         self.imgOutputPath.pack(
             padx=PADDING_M,
             pady=[PADDING_M, PADDING_S],

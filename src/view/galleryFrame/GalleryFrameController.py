@@ -2,7 +2,7 @@ from config.config import THUMB_MAX_WIDTH, THUMB_MAX_HEIGHT, THUMB_LABEL_MAX_LEN
 from view.progressDialog.ProgressDialog import ProgressDialog
 from model.PhotoModel import PhotoModel
 from .GalleryFrame import GalleryFrame
-from utils.utils import shortenText
+from utils.Utils import shortenText
 from utils.GettextConfig import _
 from typing import List, Callable
 import customtkinter as ctk

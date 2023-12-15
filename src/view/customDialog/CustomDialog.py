@@ -1,5 +1,6 @@
 from customtkinter import CTkToplevel, CTk
-from _tkinter import TclError
+from utils.Utils import getPath
+from tkinter import PhotoImage
 from typing import Tuple
 
 
@@ -41,6 +42,9 @@ class CustomDialog(CTkToplevel):
             self.wait_visibility()
         self.centerDialog()
         self.grab_set()
+        icon = PhotoImage(file=getPath("icon.png"))
+        self.wm_iconbitmap()
+        self.after(300, lambda:self.iconphoto(False, icon))
 
     def onVisibilityChange(self, e):
         self.active = True

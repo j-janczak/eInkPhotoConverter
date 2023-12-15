@@ -3,6 +3,7 @@ from ...customSegmentedButtons.CustomSegmentedButtons import CustomSegmentedButt
 from model.ConfigModel import Language
 from utils.ConfigMapper import config
 from utils.GettextConfig import _
+from utils.Utils import getPath
 import tkinter.font as tkFont
 import customtkinter as ctk
 from typing import Tuple
@@ -42,9 +43,9 @@ class AppInfoFrame(ctk.CTkFrame):
         )
 
         imgLangEng = ctk.CTkImage(
-            Image.open("images/img_lang_eng.png"))
+            Image.open(getPath("img_lang_eng.png")))
         imgLangPl = ctk.CTkImage(
-            Image.open("images/img_lang_pl.png"))
+            Image.open(getPath("img_lang_pl.png")))
 
         appNameLabel = ctk.CTkLabel(
             self,

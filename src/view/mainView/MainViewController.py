@@ -39,6 +39,13 @@ class MainViewController:
                 text=_("No files selected")
             )
             return
+        
+        if not isinstance(outputPath, str) or not len(outputPath) > 0:
+            InfoDialog(
+                window=self.view,
+                text=_("Save location not selected")
+            )
+            return
 
         self.progressDialog = ProgressDialog(
             window=self.view,

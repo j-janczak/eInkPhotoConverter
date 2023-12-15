@@ -3,6 +3,7 @@ from config.config import PADDING_XS, PADDING_S, PADDING_M
 from model.ImageSettingsModel import Transform
 from utils.ConfigMapper import config
 from utils.GettextConfig import _
+from utils.Utils import getPath
 import customtkinter as ctk
 from typing import Tuple
 from PIL import Image
@@ -38,16 +39,16 @@ class ImageSettingsFrame(ctk.CTkFrame):
         )
 
         imgDitherNone = ctk.CTkImage(
-            Image.open("images/img_dither_none_white.png"))
+            Image.open(getPath("img_dither_none_white.png")))
         imgDitherFloydSteinberg = ctk.CTkImage(
-            Image.open("images/img_dither_floyd_steinberg_white.png"))
+            Image.open(getPath("img_dither_floyd_steinberg_white.png")))
 
         imgModeCrop = ctk.CTkImage(
-            Image.open("images/img_mode_crop_white.png"))
+            Image.open(getPath("img_mode_crop_white.png")))
         imgModeFit = ctk.CTkImage(
-            Image.open("images/img_mode_fit_white.png"))
+            Image.open(getPath("img_mode_fit_white.png")))
         imgModeStretch = ctk.CTkImage(
-            Image.open("images/img_mode_stretch_white.png"))
+            Image.open(getPath("img_mode_stretch_white.png")))
 
         self.label1 = ctk.CTkLabel(self, text=_("Convert settings"))
         self.label1.pack(

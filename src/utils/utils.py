@@ -1,13 +1,5 @@
+import sys
 import os
-
-
-def resource_path(relative_path):
-    try:
-        base_path = sys._MEIPASS
-    except Exception:
-        base_path = os.path.abspath(".")
-
-    return os.path.join(base_path, relative_path)
 
 
 def shortenText(text: str, length: int) -> str:
@@ -15,3 +7,14 @@ def shortenText(text: str, length: int) -> str:
         return text[:length] + "..."
     else:
         return text
+    
+
+def getPath(imgName: str, locale: bool = False):
+    if getattr(sys, 'frozen', False):
+        base_path = sys._MEIPASS
+    else:
+        base_path = os.path.abspath(".")
+    
+    return os.path.join(base_path, 'locale', imgName) if locale else os.path.join(base_path, 'images', imgName)
+
+
