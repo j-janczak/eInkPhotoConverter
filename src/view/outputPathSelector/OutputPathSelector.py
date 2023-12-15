@@ -67,7 +67,8 @@ class OutputPathSelector(ctk.CTkFrame):
             self,
             text=_("Help"),
             image=imgHelp,
-            compound=ctk.RIGHT, command=lambda: InfoWindow()
+            compound=ctk.RIGHT,
+            command=lambda: InfoWindow(window=self.winfo_toplevel())
         )
         self.helpButton.pack(
             fill=ctk.X,

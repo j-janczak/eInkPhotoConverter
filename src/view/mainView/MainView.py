@@ -20,7 +20,7 @@ class MainView(ctk.CTk):
 
         self.minsize(840, 500)
 
-        self.title(_("eInk Images Converter by Jakub Janczak"))
+        self.title(_("eInk Photo Converter"))
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
 

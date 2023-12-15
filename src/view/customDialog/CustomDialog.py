@@ -20,8 +20,7 @@ class CustomDialog(CTkToplevel):
         self.transient(self.window)
         self.grab_set()
 
-        self.update_idletasks()
-        self.centerDialog()
+        self.after(50, self.centerDialog)
 
     def centerDialog(self) -> None:
         xPos = self.window.winfo_x() + (self.window.winfo_width() // 2) - \

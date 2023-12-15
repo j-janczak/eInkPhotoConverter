@@ -1,6 +1,7 @@
 from ..galleryFrame.GalleryFrameController import GalleryFrameController
 from .ImageSelectorFrame import ImageSelectorFrame
 import tkinter.filedialog as filedialog
+from utils.GettextConfig import _
 from typing import List
 
 
@@ -15,7 +16,7 @@ class ImageSelectorFrameController():
         self.view.sel_imgs_btn.configure(command=self.openImgSelDialog)
 
     def openImgSelDialog(self) -> None:
-        fileTypes = [("Image files", "*.jpg *.jpeg *.png *.gif *.bmp")]
+        fileTypes = [(_("Image files"), "*.jpg *.jpeg *.png *.gif *.bmp")]
         imgPaths = filedialog.askopenfilenames(filetypes=fileTypes)
         self.galleryFrameController.loadThumbs(imgPaths)
 

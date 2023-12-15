@@ -21,6 +21,7 @@ class CustomSegmentedButtons(ctk.CTkFrame):
         imgValues: List[ctk.CTkImage] = [],
         values: List[any] = [],
         defaultValue: any = None,
+        btnWidth: int = 100,
         **kwargs
     ) -> None:
         super().__init__(
@@ -47,7 +48,7 @@ class CustomSegmentedButtons(ctk.CTkFrame):
         self.btnsArray: List[ctk.CTkButton] = []
         for btnId in range(len(textValues)):
             btn = ctk.CTkButton(self, text=textValues[btnId], image=imgValues[btnId], compound="top",
-                                width=100, fg_color=PRESSED_BTN_COLOR, command=lambda btnId=btnId: self.btnClick(btnId))
+                                width=btnWidth, fg_color=PRESSED_BTN_COLOR, command=lambda btnId=btnId: self.btnClick(btnId))
 
             padx = [PADDING_S if btnId == 0 else PADDING_XS,
                     PADDING_S if btnId == len(textValues)-1 else PADDING_XS]

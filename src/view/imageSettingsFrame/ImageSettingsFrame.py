@@ -37,14 +37,14 @@ class ImageSettingsFrame(ctk.CTkFrame):
             **kwargs
         )
 
-        img_dither_none = ctk.CTkImage(
+        imgDitherNone = ctk.CTkImage(
             Image.open("images/img_dither_none_white.png"))
-        img_dither_floyd_steinberg = ctk.CTkImage(
+        imgDitherFloydSteinberg = ctk.CTkImage(
             Image.open("images/img_dither_floyd_steinberg_white.png"))
 
-        img_mode_crop = ctk.CTkImage(
+        imgModeCrop = ctk.CTkImage(
             Image.open("images/img_mode_crop_white.png"))
-        img_mode_scale = ctk.CTkImage(
+        imgModeScale = ctk.CTkImage(
             Image.open("images/img_mode_scale_white.png"))
 
         self.label1 = ctk.CTkLabel(self, text=_("Convert settings"))
@@ -56,7 +56,7 @@ class ImageSettingsFrame(ctk.CTkFrame):
             master=self,
             label=_("Dithering algorithm"),
             textValues=[_("None"), _("Floyd-Steinberg")],
-            imgValues=[img_dither_none, img_dither_floyd_steinberg],
+            imgValues=[imgDitherNone, imgDitherFloydSteinberg],
             values=[Image.Dither.NONE, Image.Dither.FLOYDSTEINBERG],
             defaultValue=config.imageSettings.ditheringAlgorithm,
         )
@@ -69,8 +69,8 @@ class ImageSettingsFrame(ctk.CTkFrame):
         self.imgTransformBtns = CustomSegmentedButtons(
             master=self,
             label=_("Transform mode"),
-            textValues=[_("Crop"), _("Adjust"), _("Stretch")],
-            imgValues=[img_mode_crop, img_mode_scale, img_mode_scale],
+            textValues=[_("Crop"), _("Fit"), _("Stretch")],
+            imgValues=[imgModeCrop, imgModeScale, imgModeScale],
             values=[Transform.CROP, Transform.FIT, Transform.STRETCH],
             defaultValue=config.imageSettings.transformMode,
         )
