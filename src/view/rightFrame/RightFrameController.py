@@ -17,7 +17,7 @@ class RightFrameController():
 
     def openDirSelDialog(self) -> None:
         selectedFolder = filedialog.askdirectory()
-        if selectedFolder != "":
+        if isinstance(selectedFolder, str) and selectedFolder != "":
             updateConfig({
                 "outputPath": selectedFolder
             })

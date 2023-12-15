@@ -41,3 +41,5 @@ class InfoWindow(CustomDialog):
             padx=[PADDING_S, PADDING_M],
             pady=PADDING_M
         )
+
+        self.grabAndCenter()

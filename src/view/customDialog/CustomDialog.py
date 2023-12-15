@@ -16,14 +16,12 @@ class CustomDialog(CTkToplevel):
             fg_color=fg_color,
             **kwargs
         )
+        self.active = False
+        self.bind("<Visibility>", self.onVisibilityChange)
         
         self.window = window
         self.minsize(400, 0)
         self.transient(self.window)
-
-        self.update_idletasks()
-        self.grab_set()
-        self.centerDialog()
 
     def centerDialog(self) -> None:
         xPos = self.window.winfo_x() + (self.window.winfo_width() // 2) - \
@@ -33,6 +31,16 @@ class CustomDialog(CTkToplevel):
         self.geometry(f"+{xPos}+{yPos}")
 
     def customDestroy(self):
+        self.grab_release()
         self.after_idle(
             self.destroy
         )
+
+    def grabAndCenter(self) -> None:
+        if (not self.active):
+            self.wait_visibility()
+        self.centerDialog()
+        self.grab_set()
+
+    def onVisibilityChange(self, e):
+        self.active = True

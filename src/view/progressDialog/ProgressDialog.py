@@ -22,8 +22,7 @@ class ProgressDialog(CustomDialog):
             window=window,
             **kwargs
         )
-        self.update_idletasks()
-
+        self.resizable(width=False, height=False)
         self.overrideredirect(True)
 
         self.dialogFrame = ctk.CTkFrame(self)
@@ -47,10 +46,9 @@ class ProgressDialog(CustomDialog):
         )
 
         self.text = text
+        self.grabAndCenter()
 
     def progress(self, fileName: str, step: int, of: int) -> None:
-        self.update_idletasks()
-        
         progressText = f"{self.text}: \"{shortenText(fileName, 15)}\" {step}/{of}"
         self.progressTextWidget.configure(text=progressText)
         self.progressBar.set(step/of)
