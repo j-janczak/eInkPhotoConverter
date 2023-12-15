@@ -1,11 +1,43 @@
-from typing import Optional, Tuple, Union
+from view.customDialog.CustomDialog import CustomDialog
+from .appInfoFrame.AppInfoFrame import AppInfoFrame
+from .appInfoFrame.AppInfoFrameController import AppInfoFrameController
+from .manualFrame.ManualFrame import ManualFrame
+from config.config import PADDING_S, PADDING_M
+from utils.GettextConfig import _
 import customtkinter as ctk
+from typing import Tuple
 
 
-class InfoWindow(ctk.CTkToplevel):
-    def __init__(self):
-        super().__init__()
+class InfoWindow(CustomDialog):
+    def __init__(
+        self,
+        *args,
+        fg_color: str | Tuple[str, str] | None = None,
+        window: ctk.CTk,
+        **kwargs
+    ) -> None:
+        super().__init__(
+            *args,
+            fg_color=fg_color,
+            window=window,
+            **kwargs
+        )
+        self.title(_("About"))
+        self.resizable(width=False, height=False)
 
-        self.title("Informacje")
-        self.geometry("300x200")
-        self.after(100, self.lift)
+        appInfoFrame = AppInfoFrame(self)
+        appInfoFrame.pack(
+            fill=ctk.Y,
+            side=ctk.LEFT,
+            padx=[PADDING_M, PADDING_S],
+            pady=PADDING_M
+        )
+        AppInfoFrameController(appInfoFrame)
+
+        ManualFrame(self).pack(
+            fill=ctk.BOTH,
+            expand=True,
+            side=ctk.LEFT,
+            padx=[PADDING_S, PADDING_M],
+            pady=PADDING_M
+        )

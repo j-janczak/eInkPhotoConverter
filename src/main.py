@@ -2,7 +2,7 @@ from view.mainView.MainView import MainView
 from view.mainView.MainViewController import MainViewController
 
 
-def main():
+def main() -> None:
     mainView = MainView()
     MainViewController(mainView)
     mainView.mainloop()

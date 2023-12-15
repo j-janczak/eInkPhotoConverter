@@ -1,6 +1,7 @@
 from view.customDialog.CustomDialog import CustomDialog
 from config.config import PADDING_S, PADDING_M
 from utils.GettextConfig import _
+from typing import Callable
 import customtkinter as ctk
 from typing import Tuple
 
@@ -10,8 +11,9 @@ class InfoDialog(CustomDialog):
             self,
             *args,
             fg_color: str | Tuple[str, str] | None = None,
-            window: ctk.CTk, 
+            window: ctk.CTk,
             text: str,
+            action: Tuple[str, Callable[[], None]] = None,
             **kwargs,
     ) -> None:
         super().__init__(
@@ -22,11 +24,17 @@ class InfoDialog(CustomDialog):
         )
         self.title(_("Info"))
 
+        self.grid_columnconfigure(0, weight=1)
+        self.grid_columnconfigure(1, weight=1)
+
         ctk.CTkLabel(
             master=self,
             text=text
-        ).pack(
-            fill=ctk.X,
+        ).grid(
+            row=0,
+            column=0,
+            columnspan=2,
+            stick="nsew",
             padx=PADDING_M,
             pady=[PADDING_M, PADDING_S]
         )
@@ -35,8 +43,26 @@ class InfoDialog(CustomDialog):
             master=self,
             text="OK",
             command=self.destroy
-        ).pack(
-            anchor="e",
+        ).grid(
+            row=1,
+            column=1,
+            stick="se",
             padx=PADDING_M,
             pady=[PADDING_S, PADDING_M]
         )
+
+        if action:
+            ctk.CTkButton(
+                master=self,
+                text=action[0],
+                command=lambda: self.executeCommand(action[1])
+            ).grid(
+                row=1,
+                column=0,
+                padx=PADDING_M,
+                pady=[PADDING_S, PADDING_M]
+            )
+
+    def executeCommand(self, command: Callable):
+        command()
+        self.customDestroy()

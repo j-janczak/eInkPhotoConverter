@@ -1,3 +1,6 @@
+from ..imageSelectorFrame.ImageSelectorFrameController import ImageSelectorFrameController
+from ..imageSettingsFrame.ImageSettingsFrameController import ImageSettingsFrameController
+from ..rightFrame.RightFrameController import RightFrameController
 from ..progressDialog.ProgressDialog import ProgressDialog
 from model.ConvertErrorModel import ConvertErrorModel
 from view.infoDialog.InfoDialog import InfoDialog
@@ -5,7 +8,10 @@ from utils.Converter import convertImages
 from ..mainView.MainView import MainView
 from utils.GettextConfig import _
 from typing import List
+import subprocess
 import threading
+import sys
+import os
 
 
 class MainViewController:
@@ -14,12 +20,18 @@ class MainViewController:
             view: MainView
     ) -> None:
         self.view = view
-        self.view.outputPathSelector.setConvertCallback(self.convertImages)
+        self.imageSelectorController = ImageSelectorFrameController(
+            self.view.imageSelectorFrame)
+        self.imageSettingsController = ImageSettingsFrameController(
+            self.view.imageSettingsFrame)
+        self.rightFrameController = RightFrameController(
+            self.view.outputPathSelector)
+        self.rightFrameController.setConvertCallback(self.convertImages)
 
     def convertImages(self) -> None:
-        imageSettings = self.view.imageSettingsFrame.getSettings()
-        outputPath = self.view.outputPathSelector.getOutputPath()
-        imagePaths = self.view.imageSelectorFrame.getImagePaths()
+        imageSettings = self.imageSettingsController.getSettings()
+        outputPath = self.rightFrameController.getOutputPath()
+        imagePaths = self.imageSelectorController.getImagePaths()
 
         if len(imagePaths) == 0:
             InfoDialog(
@@ -52,9 +64,9 @@ class MainViewController:
         )
         thread.start()
 
-    def displayEndConvertDialog(self, errorFiles: List[ConvertErrorModel]):
-        self.progressDialog.destroy()
-        
+    def displayEndConvertDialog(self, errorFiles: List[ConvertErrorModel]) -> None:
+        self.progressDialog.customDestroy()
+
         if len(errorFiles) == 0:
             text = _("Image conversion completed successfully!")
         else:
@@ -64,5 +76,17 @@ class MainViewController:
 
         InfoDialog(
             window=self.view,
-            text=text
+            text=text,
+            action=(
+                _("Open folder"),
+                lambda: self.openFolder(self.rightFrameController.getOutputPath())
+            )
         )
+
+    def openFolder(self, path):
+        if sys.platform == 'win32':
+            os.startfile(path)
+        elif sys.platform == 'darwin':
+            subprocess.Popen(['open', path])
+        else:
+            subprocess.Popen(['xdg-open', path])

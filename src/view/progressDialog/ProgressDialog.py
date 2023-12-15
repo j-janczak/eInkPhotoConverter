@@ -1,9 +1,10 @@
-from typing import Tuple
-from customtkinter import CTk
 from view.customDialog.CustomDialog import CustomDialog
 from config.config import PADDING_M
 from utils.utils import shortenText
+from customtkinter import CTk
+from _tkinter import TclError
 import customtkinter as ctk
+from typing import Tuple
 
 
 class ProgressDialog(CustomDialog):
@@ -21,6 +22,7 @@ class ProgressDialog(CustomDialog):
             window=window,
             **kwargs
         )
+        self.update_idletasks()
 
         self.overrideredirect(True)
 
@@ -46,10 +48,9 @@ class ProgressDialog(CustomDialog):
 
         self.text = text
 
-        self.update_idletasks()
-        self.centerDialog()
-
     def progress(self, fileName: str, step: int, of: int) -> None:
+        self.update_idletasks()
+        
         progressText = f"{self.text}: \"{shortenText(fileName, 15)}\" {step}/{of}"
         self.progressTextWidget.configure(text=progressText)
         self.progressBar.set(step/of)
