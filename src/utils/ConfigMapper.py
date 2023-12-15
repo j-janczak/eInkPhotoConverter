@@ -20,10 +20,7 @@ def __writeToFile() -> None:
         print(f"Error while creating {FILE_NAME}")
 
 
-def updateConfig(updateConfig): return __updateConfig(updateConfig)
-
-
-def __updateConfig(updatedModel: any) -> None:
+def updateConfig(updatedModel: any) -> None:
     global config
     config = config.model_copy(update=updatedModel)
     __writeToFile()
