@@ -17,10 +17,13 @@ class MainViewController:
             view: MainView
     ) -> None:
         self.view = view
-        self.view.outputPathSelector.setConvertCallback(self.convertImages)
-        self.imageSelectorController = ImageSelectorFrameController(self.view.imageSelectorFrame)
-        self.imageSettingsController = ImageSettingsFrameController(self.view.imageSettingsFrame)
-        self.outputPathController = OutputPathSelectorController(self.view.outputPathSelector)
+        self.imageSelectorController = ImageSelectorFrameController(
+            self.view.imageSelectorFrame)
+        self.imageSettingsController = ImageSettingsFrameController(
+            self.view.imageSettingsFrame)
+        self.outputPathController = OutputPathSelectorController(
+            self.view.outputPathSelector)
+        self.outputPathController.setConvertCallback(self.convertImages)
 
     def convertImages(self) -> None:
         imageSettings = self.imageSettingsController.getSettings()

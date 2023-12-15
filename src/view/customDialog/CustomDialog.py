@@ -24,7 +24,8 @@ class CustomDialog(CTkToplevel):
         self.centerDialog()
 
     def centerDialog(self) -> None:
-        xPos = self.window.winfo_x() + (self.window.winfo_width() // 2) - (self.winfo_width() // 2)
+        xPos = self.window.winfo_x() + (self.window.winfo_width() // 2) - \
+            (self.winfo_width() // 2)
         yPos = self.window.winfo_y() + (self.window.winfo_height() // 2) - \
             (self.winfo_height() // 2)
         self.geometry(f"+{xPos}+{yPos}")

@@ -1,26 +1,26 @@
 from view.infoWindow.InfoWindow import InfoWindow
 from config.config import PADDING_S, PADDING_M
-from typing import Callable, Tuple
 from utils.GettextConfig import _
 import customtkinter as ctk
+from typing import Tuple
 from PIL import Image
 
 
 class OutputPathSelector(ctk.CTkFrame):
     def __init__(
-            self,
-            master: any,
-            width: int = 200,
-            height: int = 200,
-            corner_radius: int | str | None = None,
-            border_width: int | str | None = None,
-            bg_color: str | Tuple[str, str] = "transparent",
-            fg_color: str | Tuple[str, str] | None = None,
-            border_color: str | Tuple[str, str] | None = None,
-            background_corner_colors: Tuple[str | Tuple[str, str]] | None = None,
-            overwrite_preferred_drawing_method: str | None = None,
-            **kwargs,
-        ) -> None:
+        self,
+        master: any,
+        width: int = 200,
+        height: int = 200,
+        corner_radius: int | str | None = None,
+        border_width: int | str | None = None,
+        bg_color: str | Tuple[str, str] = "transparent",
+        fg_color: str | Tuple[str, str] | None = None,
+        border_color: str | Tuple[str, str] | None = None,
+        background_corner_colors: Tuple[str | Tuple[str, str]] | None = None,
+        overwrite_preferred_drawing_method: str | None = None,
+        **kwargs,
+    ) -> None:
         super().__init__(
             master,
             width,
@@ -36,9 +36,9 @@ class OutputPathSelector(ctk.CTkFrame):
         )
 
         img_save = ctk.CTkImage(Image.open("images/img_save_white.png"))
-        
+
         img_start = ctk.CTkImage(Image.open("images/img_start_white.png"))
-        
+
         imgHelp = ctk.CTkImage(Image.open("images/img_help_white.png"))
 
         self.imgOutputPath = ctk.CTkEntry(
@@ -95,6 +95,3 @@ class OutputPathSelector(ctk.CTkFrame):
             padx=PADDING_M,
             pady=[PADDING_S, 0]
         )
-    
-    def setConvertCallback(self, callback: Callable[[], None] = None) -> None:
-        self.imgConvertBtn.configure(command=callback)

@@ -10,7 +10,7 @@ class InfoDialog(CustomDialog):
             self,
             *args,
             fg_color: str | Tuple[str, str] | None = None,
-            window: ctk.CTk, 
+            window: ctk.CTk,
             text: str,
             **kwargs,
     ) -> None:

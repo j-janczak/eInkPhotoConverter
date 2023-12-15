@@ -19,7 +19,9 @@ def __writeToFile() -> None:
     except:
         print(f"Error while creating {FILE_NAME}")
 
-updateConfig = lambda updateConfig: __updateConfig(updateConfig)
+
+def updateConfig(updateConfig): return __updateConfig(updateConfig)
+
 
 def __updateConfig(updatedModel: any) -> None:
     global config

@@ -1,6 +1,7 @@
 from utils.ConfigMapper import config, updateConfig
 from .OutputPathSelector import OutputPathSelector
 from tkinter import filedialog, StringVar
+from typing import Callable
 
 
 class OutputPathSelectorController():
@@ -21,6 +22,9 @@ class OutputPathSelectorController():
                 "outputPath": selectedFolder
             })
             self.imgOutputPathText.set(selectedFolder)
+
+    def setConvertCallback(self, callback: Callable[[], None] = None) -> None:
+        self.view.imgConvertBtn.configure(command=callback)
 
     def getOutputPath(self) -> str:
         return self.imgOutputPathText.get()

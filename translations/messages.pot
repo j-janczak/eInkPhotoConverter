@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-14 23:25+0100\n"
+"POT-Creation-Date: 2023-12-15 12:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,55 +17,59 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/utils/Converter.py:36
+#: ../src/utils/Converter.py:35
 msgid "Unable to open"
 msgstr ""
 
-#: ../src/utils/Converter.py:91
+#: ../src/utils/Converter.py:90
 msgid "Unable to save"
 msgstr ""
 
-#: ../src/view/galleryFrame/GalleryFrameController.py:21
-msgid "Creating thumbnails..."
+#: ../src/view/outputPathSelector/OutputPathSelector.py:46
+msgid "Location of photos"
 msgstr ""
 
-#: ../src/view/imageSelectorFrame/ImageSelectorFrame.py:17
-msgid "Selected photos"
+#: ../src/view/outputPathSelector/OutputPathSelector.py:56
+msgid "Select a save location"
 msgstr ""
 
-#: ../src/view/imageSelectorFrame/ImageSelectorFrame.py:28
-msgid "Select photos"
+#: ../src/view/outputPathSelector/OutputPathSelector.py:68
+msgid "Help"
 msgstr ""
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:51
+#: ../src/view/outputPathSelector/OutputPathSelector.py:81
+msgid "Convert!"
+msgstr ""
+
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:50
 msgid "Convert settings"
 msgstr ""
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:58
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:57
 msgid "Dithering algorithm"
 msgstr ""
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:59
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:58
 msgid "None"
 msgstr ""
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:59
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:58
 msgid "Floyd-Steinberg"
 msgstr ""
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:73
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:71
 msgid "Transform mode"
 msgstr ""
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:74
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:72
 msgid "Crop"
 msgstr ""
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:74
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:72
 msgid "Adjust"
 msgstr ""
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:74
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:72
 msgid "Stretch"
 msgstr ""
 
@@ -73,38 +77,34 @@ msgstr ""
 msgid "Info"
 msgstr ""
 
-#: ../src/view/mainView/MainView.py:17
+#: ../src/view/mainView/MainView.py:23
 msgid "eInk Images Converter by Jakub Janczak"
 msgstr ""
 
-#: ../src/view/mainView/MainViewController.py:27
+#: ../src/view/mainView/MainViewController.py:36
 msgid "No files selected"
 msgstr ""
 
-#: ../src/view/mainView/MainViewController.py:33
+#: ../src/view/mainView/MainViewController.py:42
 msgid "Converting..."
 msgstr ""
 
-#: ../src/view/mainView/MainViewController.py:59
+#: ../src/view/mainView/MainViewController.py:68
 msgid "Image conversion completed successfully!"
 msgstr ""
 
-#: ../src/view/mainView/MainViewController.py:61
+#: ../src/view/mainView/MainViewController.py:70
 msgid "There were errors converting some images"
 msgstr ""
 
-#: ../src/view/outputPathSelector/OutputPathSelector.py:52
-msgid "Location of photos"
+#: ../src/view/galleryFrame/GalleryFrameController.py:24
+msgid "Creating thumbnails..."
 msgstr ""
 
-#: ../src/view/outputPathSelector/OutputPathSelector.py:63
-msgid "Select a save location"
+#: ../src/view/imageSelectorFrame/ImageSelectorFrame.py:42
+msgid "Selected photos"
 msgstr ""
 
-#: ../src/view/outputPathSelector/OutputPathSelector.py:76
-msgid "Help"
-msgstr ""
-
-#: ../src/view/outputPathSelector/OutputPathSelector.py:89
-msgid "Convert!"
+#: ../src/view/imageSelectorFrame/ImageSelectorFrame.py:53
+msgid "Select photos"
 msgstr ""

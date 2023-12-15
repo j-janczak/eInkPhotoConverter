@@ -5,6 +5,7 @@ import customtkinter as ctk
 from typing import Tuple
 from PIL import Image
 
+
 class ImageSelectorFrame(ctk.CTkFrame):
     def __init__(
         self,
