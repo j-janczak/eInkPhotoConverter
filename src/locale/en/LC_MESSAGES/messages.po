@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-15 15:34+0100\n"
-"PO-Revision-Date: 2023-12-15 15:43+0100\n"
+"POT-Creation-Date: 2023-12-15 16:39+0100\n"
+"PO-Revision-Date: 2023-12-15 16:41+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -25,51 +25,51 @@ msgstr ""
 msgid "Unable to save"
 msgstr ""
 
-#: ../src/view/outputPathSelector/OutputPathSelector.py:46
+#: ../src/view/rightFrame/RightFrame.py:46
 msgid "Location of photos"
 msgstr ""
 
-#: ../src/view/outputPathSelector/OutputPathSelector.py:56
+#: ../src/view/rightFrame/RightFrame.py:56
 msgid "Select a save location"
 msgstr ""
 
-#: ../src/view/outputPathSelector/OutputPathSelector.py:68
+#: ../src/view/rightFrame/RightFrame.py:68
 msgid "Help"
 msgstr ""
 
-#: ../src/view/outputPathSelector/OutputPathSelector.py:82
+#: ../src/view/rightFrame/RightFrame.py:82
 msgid "Convert!"
 msgstr ""
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:50
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:52
 msgid "Convert settings"
 msgstr ""
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:57
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:59
 msgid "Dithering algorithm"
 msgstr ""
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:58
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:60
 msgid "None"
 msgstr ""
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:58
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:60
 msgid "Floyd-Steinberg"
 msgstr ""
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:71
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:73
 msgid "Transform mode"
 msgstr ""
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:72
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:74
 msgid "Crop"
 msgstr ""
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:72
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:74
 msgid "Fit"
 msgstr ""
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:72
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:74
 msgid "Stretch"
 msgstr ""
 
@@ -77,27 +77,27 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:50
+#: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:51
 #: ../src/view/mainView/MainView.py:23
 msgid "eInk Photo Converter"
 msgstr ""
 
-#: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:63
+#: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:64
 msgid "By Jakub Janczak"
 msgstr ""
 
-#: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:71
+#: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:72
 msgid ""
 "\n"
 "App language\n"
 "(Requires app restart)\n"
 msgstr ""
 
-#: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:86
+#: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:87
 msgid "v 1.0"
 msgstr ""
 
-#: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:95
+#: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:96
 msgid "GitHub"
 msgstr ""
 
@@ -150,24 +150,28 @@ msgid ""
 "the image."
 msgstr ""
 
-#: ../src/view/infoDialog/InfoDialog.py:23
+#: ../src/view/infoDialog/InfoDialog.py:25
 msgid "Info"
 msgstr ""
 
-#: ../src/view/mainView/MainViewController.py:36
+#: ../src/view/mainView/MainViewController.py:38
 msgid "No files selected"
 msgstr ""
 
-#: ../src/view/mainView/MainViewController.py:42
+#: ../src/view/mainView/MainViewController.py:44
 msgid "Converting..."
 msgstr ""
 
-#: ../src/view/mainView/MainViewController.py:68
+#: ../src/view/mainView/MainViewController.py:70
 msgid "Image conversion completed successfully!"
 msgstr ""
 
-#: ../src/view/mainView/MainViewController.py:70
+#: ../src/view/mainView/MainViewController.py:72
 msgid "There were errors converting some images"
+msgstr ""
+
+#: ../src/view/mainView/MainViewController.py:80
+msgid "Open folder"
 msgstr ""
 
 #: ../src/view/galleryFrame/GalleryFrameController.py:24

@@ -18,7 +18,8 @@ class ImageSelectorFrameController():
     def openImgSelDialog(self) -> None:
         fileTypes = [(_("Image files"), "*.jpg *.jpeg *.png *.gif *.bmp")]
         imgPaths = filedialog.askopenfilenames(filetypes=fileTypes)
-        self.galleryFrameController.loadThumbs(imgPaths)
+        if len(imgPaths) > 0:
+            self.galleryFrameController.loadThumbs(imgPaths)
 
     def getImagePaths(self) -> List[str]:
         return self.galleryFrameController.getImagePaths()

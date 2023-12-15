@@ -44,8 +44,10 @@ class ImageSettingsFrame(ctk.CTkFrame):
 
         imgModeCrop = ctk.CTkImage(
             Image.open("images/img_mode_crop_white.png"))
-        imgModeScale = ctk.CTkImage(
-            Image.open("images/img_mode_scale_white.png"))
+        imgModeFit = ctk.CTkImage(
+            Image.open("images/img_mode_fit_white.png"))
+        imgModeStretch = ctk.CTkImage(
+            Image.open("images/img_mode_stretch_white.png"))
 
         self.label1 = ctk.CTkLabel(self, text=_("Convert settings"))
         self.label1.pack(
@@ -70,7 +72,7 @@ class ImageSettingsFrame(ctk.CTkFrame):
             master=self,
             label=_("Transform mode"),
             textValues=[_("Crop"), _("Fit"), _("Stretch")],
-            imgValues=[imgModeCrop, imgModeScale, imgModeScale],
+            imgValues=[imgModeCrop, imgModeFit, imgModeStretch],
             values=[Transform.CROP, Transform.FIT, Transform.STRETCH],
             defaultValue=config.imageSettings.transformMode,
         )

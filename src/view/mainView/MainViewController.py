@@ -8,7 +8,9 @@ from utils.Converter import convertImages
 from ..mainView.MainView import MainView
 from utils.GettextConfig import _
 from typing import List
+import subprocess
 import threading
+import sys
 
 
 class MainViewController:
@@ -73,5 +75,17 @@ class MainViewController:
 
         InfoDialog(
             window=self.view,
-            text=text
+            text=text,
+            action=(
+                _("Open folder"),
+                lambda: self.openFolder(self.rightFrameController.getOutputPath())
+            )
         )
+
+    def openFolder(self, path):
+        if sys.platform == 'win32':
+            subprocess.Popen(['explorer', path])
+        elif sys.platform == 'darwin':
+            subprocess.Popen(['open', path])
+        else:  # linux
+            subprocess.Popen(['xdg-open', path])

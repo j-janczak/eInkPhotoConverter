@@ -58,12 +58,17 @@ class GalleryFrameController():
             if len(alreadyExists) > 0:
                 continue
 
+            try:
+                image = Image.open(path)
+            except FileNotFoundError:
+                continue
+
             self.images.append(
                 PhotoModel(
                     path=path,
                     name=shortenText(os.path.basename(
                         path), THUMB_LABEL_MAX_LEN),
-                    thumb=self.scaleImgWithAspectRatio(Image.open(path))
+                    thumb=self.scaleImgWithAspectRatio(image)
                 )
             )
         endCallback()
