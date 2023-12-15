@@ -1,6 +1,6 @@
-from ..outputPathSelector.OutputPathSelectorController import OutputPathSelectorController
 from ..imageSelectorFrame.ImageSelectorFrameController import ImageSelectorFrameController
 from ..imageSettingsFrame.ImageSettingsFrameController import ImageSettingsFrameController
+from ..rightFrame.RightFrameController import RightFrameController
 from ..progressDialog.ProgressDialog import ProgressDialog
 from model.ConvertErrorModel import ConvertErrorModel
 from view.infoDialog.InfoDialog import InfoDialog
@@ -21,13 +21,13 @@ class MainViewController:
             self.view.imageSelectorFrame)
         self.imageSettingsController = ImageSettingsFrameController(
             self.view.imageSettingsFrame)
-        self.outputPathController = OutputPathSelectorController(
+        self.rightFrameController = RightFrameController(
             self.view.outputPathSelector)
-        self.outputPathController.setConvertCallback(self.convertImages)
+        self.rightFrameController.setConvertCallback(self.convertImages)
 
     def convertImages(self) -> None:
         imageSettings = self.imageSettingsController.getSettings()
-        outputPath = self.outputPathController.getOutputPath()
+        outputPath = self.rightFrameController.getOutputPath()
         imagePaths = self.imageSelectorController.getImagePaths()
 
         if len(imagePaths) == 0:

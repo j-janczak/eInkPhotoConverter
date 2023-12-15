@@ -1,6 +1,6 @@
-from ..outputPathSelector.OutputPathSelector import OutputPathSelector
 from ..imageSettingsFrame.ImageSettingsFrame import ImageSettingsFrame
 from ..imageSelectorFrame.ImageSelectorFrame import ImageSelectorFrame
+from ..rightFrame.RightFrame import RightFrame
 from config.config import PADDING_S, PADDING_M
 from utils.GettextConfig import _
 import customtkinter as ctk
@@ -42,7 +42,7 @@ class MainView(ctk.CTk):
             pady=[PADDING_S, PADDING_M],
         )
 
-        self.outputPathSelector = OutputPathSelector(self)
+        self.outputPathSelector = RightFrame(self)
         self.outputPathSelector.grid(
             row=0,
             column=1,

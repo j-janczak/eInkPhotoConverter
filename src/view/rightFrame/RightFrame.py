@@ -6,7 +6,7 @@ from typing import Tuple
 from PIL import Image
 
 
-class OutputPathSelector(ctk.CTkFrame):
+class RightFrame(ctk.CTkFrame):
     def __init__(
         self,
         master: any,

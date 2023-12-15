@@ -1,13 +1,13 @@
 from utils.ConfigMapper import config, updateConfig
-from .OutputPathSelector import OutputPathSelector
 from tkinter import filedialog, StringVar
+from .RightFrame import RightFrame
 from typing import Callable
 
 
-class OutputPathSelectorController():
+class RightFrameController():
     def __init__(
         self,
-        view: OutputPathSelector
+        view: RightFrame
     ) -> None:
         self.view = view
         self.imgOutputPathText = StringVar(
