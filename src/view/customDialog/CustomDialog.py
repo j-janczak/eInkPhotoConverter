@@ -2,6 +2,7 @@ from customtkinter import CTkToplevel, CTk
 from utils.Utils import getPath
 from tkinter import PhotoImage
 from typing import Tuple
+import sys
 
 
 class CustomDialog(CTkToplevel):
