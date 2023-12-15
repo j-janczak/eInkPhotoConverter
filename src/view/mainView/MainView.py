@@ -2,15 +2,21 @@ from ..outputPathSelector.OutputPathSelector import OutputPathSelector
 from ..imageSettingsFrame.ImageSettingsFrame import ImageSettingsFrame
 from ..imageSelectorFrame.ImageSelectorFrame import ImageSelectorFrame
 from config.config import PADDING_S, PADDING_M
-from utils.ConfigMapper import ConfigMapper
 from utils.GettextConfig import _
 import customtkinter as ctk
+from typing import Tuple
 
 
 class MainView(ctk.CTk):
-    def __init__(self) -> None:
-        super().__init__()
-        self.configMapper = ConfigMapper()
+    def __init__(
+            self,
+            fg_color: str | Tuple[str, str] | None = None,
+            **kwargs
+    ) -> None:
+        super().__init__(
+            fg_color,
+            **kwargs
+        )
 
         self.minsize(840, 500)
 
@@ -27,8 +33,7 @@ class MainView(ctk.CTk):
             pady=[PADDING_M, PADDING_S]
         )
 
-        self.imageSettingsFrame = ImageSettingsFrame(
-            self, configMapper=self.configMapper)
+        self.imageSettingsFrame = ImageSettingsFrame(self)
         self.imageSettingsFrame.grid(
             row=1,
             column=0,
@@ -37,10 +42,7 @@ class MainView(ctk.CTk):
             pady=[PADDING_S, PADDING_M],
         )
 
-        self.outputPathSelector = OutputPathSelector(
-            self,
-            configMapper=self.configMapper
-        )
+        self.outputPathSelector = OutputPathSelector(self)
         self.outputPathSelector.grid(
             row=0,
             column=1,

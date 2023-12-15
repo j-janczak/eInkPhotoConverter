@@ -1,3 +1,6 @@
+from ..outputPathSelector.OutputPathSelectorController import OutputPathSelectorController
+from ..imageSelectorFrame.ImageSelectorFrameController import ImageSelectorFrameController
+from ..imageSettingsFrame.ImageSettingsFrameController import ImageSettingsFrameController
 from ..progressDialog.ProgressDialog import ProgressDialog
 from model.ConvertErrorModel import ConvertErrorModel
 from view.infoDialog.InfoDialog import InfoDialog
@@ -15,11 +18,14 @@ class MainViewController:
     ) -> None:
         self.view = view
         self.view.outputPathSelector.setConvertCallback(self.convertImages)
+        self.imageSelectorController = ImageSelectorFrameController(self.view.imageSelectorFrame)
+        self.imageSettingsController = ImageSettingsFrameController(self.view.imageSettingsFrame)
+        self.outputPathController = OutputPathSelectorController(self.view.outputPathSelector)
 
     def convertImages(self) -> None:
-        imageSettings = self.view.imageSettingsFrame.getSettings()
-        outputPath = self.view.outputPathSelector.getOutputPath()
-        imagePaths = self.view.imageSelectorFrame.getImagePaths()
+        imageSettings = self.imageSettingsController.getSettings()
+        outputPath = self.outputPathController.getOutputPath()
+        imagePaths = self.imageSelectorController.getImagePaths()
 
         if len(imagePaths) == 0:
             InfoDialog(
@@ -52,9 +58,9 @@ class MainViewController:
         )
         thread.start()
 
-    def displayEndConvertDialog(self, errorFiles: List[ConvertErrorModel]):
-        self.progressDialog.destroy()
-        
+    def displayEndConvertDialog(self, errorFiles: List[ConvertErrorModel]) -> None:
+        self.progressDialog.customDestroy()
+
         if len(errorFiles) == 0:
             text = _("Image conversion completed successfully!")
         else:

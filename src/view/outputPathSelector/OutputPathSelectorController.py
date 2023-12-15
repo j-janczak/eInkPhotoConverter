@@ -1,27 +1,26 @@
-from view.customFrame.CustomFrameController import CustomFrameController
-from utils.ConfigMapper import ConfigMapper
+from utils.ConfigMapper import config, updateConfig
+from .OutputPathSelector import OutputPathSelector
 from tkinter import filedialog, StringVar
 
 
-class OutputPathSelectorController(CustomFrameController):
+class OutputPathSelectorController():
     def __init__(
         self,
-        master: any,
-        configMapper: ConfigMapper
+        view: OutputPathSelector
     ) -> None:
-        super().__init__(
-            master,
-            configMapper
-        )
-
-        self.view = master
+        self.view = view
         self.imgOutputPathText = StringVar(
-            value=configMapper.config.outputPath)
+            value=config.outputPath)
+        self.view.imgOutputPath.configure(textvariable=self.imgOutputPathText)
+        self.view.imgActionBtn.configure(command=self.openDirSelDialog)
 
-    def openDirSelDialog(self):
+    def openDirSelDialog(self) -> None:
         selectedFolder = filedialog.askdirectory()
         if selectedFolder != "":
-            self.configMapper.update({
+            updateConfig({
                 "outputPath": selectedFolder
             })
             self.imgOutputPathText.set(selectedFolder)
+
+    def getOutputPath(self) -> str:
+        return self.imgOutputPathText.get()

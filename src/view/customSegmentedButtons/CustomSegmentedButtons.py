@@ -1,11 +1,9 @@
 from config.config import PADDING_S, PADDING_XS, PRESSED_BTN_COLOR, SELECTED_BTN_COLOR
-from utils.ConfigMapper import ConfigMapper
-from view.customFrame.CustomFrame import CustomFrame
 from typing import List, Tuple, Callable
 import customtkinter as ctk
 
 
-class CustomSegmentedButtons(CustomFrame):
+class CustomSegmentedButtons(ctk.CTkFrame):
     def __init__(
         self,
         master: any,
@@ -18,13 +16,11 @@ class CustomSegmentedButtons(CustomFrame):
         border_color: str | Tuple[str, str] | None = None,
         background_corner_colors: Tuple[str | Tuple[str, str]] | None = None,
         overwrite_preferred_drawing_method: str | None = None,
-        configMapper: ConfigMapper = ...,
         label: str = "",
         textValues: List[str] = [],
         imgValues: List[ctk.CTkImage] = [],
         values: List[any] = [],
         defaultValue: any = None,
-        onClick: Callable[[any], None] = None,
         **kwargs
     ) -> None:
         super().__init__(
@@ -38,19 +34,17 @@ class CustomSegmentedButtons(CustomFrame):
             border_color,
             background_corner_colors,
             overwrite_preferred_drawing_method,
-            configMapper,
             **kwargs
         )
+        self.onClick: Callable[[any], None] = None
 
         self.values = values
         self.selectedItem = self.values.index(defaultValue)
-        self.onClick = onClick
 
         self.widgetLabel = ctk.CTkLabel(self, text=label)
         self.widgetLabel.pack()
 
-        self.btnsArray = []
-
+        self.btnsArray: List[ctk.CTkButton] = []
         for btnId in range(len(textValues)):
             btn = ctk.CTkButton(self, text=textValues[btnId], image=imgValues[btnId], compound="top",
                                 width=100, fg_color=PRESSED_BTN_COLOR, command=lambda btnId=btnId: self.btnClick(btnId))

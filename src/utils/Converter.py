@@ -1,10 +1,9 @@
-from model.ImageSettingsModel import ImageSettingsModel, Transformation
+from model.ImageSettingsModel import ImageSettingsModel, Transform
 from model.ConvertErrorModel import ConvertErrorModel
 from typing import List, Callable
 from utils.GettextConfig import _
 from PIL import Image
 import os.path
-import sys
 
 COLORS = [(0, 0, 0), (255, 255, 255), (0, 255, 0), (0, 0, 255),
           (255, 0, 0), (255, 255, 0), (255, 128, 0)]
@@ -43,7 +42,7 @@ def convertImages(
         targetWidth, tergetHeight = (TARGET_LONG_SIDE, TARGET_SHORT_SIDE) if orgWidth > orgHeight else (
             TARGET_SHORT_SIDE, TARGET_LONG_SIDE)
 
-        if imageSettings.transformationMode == Transformation.CROP:
+        if imageSettings.transformMode == Transform.CROP:
             ratio = min(orgWidth / targetWidth, orgHeight / tergetHeight)
             newSize = (int(orgWidth / ratio), int(orgHeight / ratio))
             scalledImg = imageToConvert.resize(newSize, Image.LANCZOS)
@@ -54,7 +53,7 @@ def convertImages(
             bottom = (scalledImg.height + tergetHeight) / 2
             imgTransformed = scalledImg.crop((left, top, right, bottom))
 
-        elif imageSettings.transformationMode == Transformation.FIT:
+        elif imageSettings.transformMode == Transform.FIT:
             ratio = min(targetWidth / orgWidth, tergetHeight / orgHeight)
             newSize = (int(orgWidth * ratio), int(orgHeight * ratio))
             scalledImg = imageToConvert.resize(newSize, Image.LANCZOS)
@@ -65,7 +64,7 @@ def convertImages(
             y = (tergetHeight - newSize[1]) // 2
             imgTransformed.paste(scalledImg, (x, y))
 
-        elif imageSettings.transformationMode == Transformation.STRECH:
+        elif imageSettings.transformMode == Transform.STRETCH:
             imgTransformed = imageToConvert.resize(
                 (targetWidth, tergetHeight), Image.LANCZOS)
 

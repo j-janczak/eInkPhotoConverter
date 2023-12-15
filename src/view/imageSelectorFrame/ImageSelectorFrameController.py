@@ -1,13 +1,22 @@
+from ..galleryFrame.GalleryFrameController import GalleryFrameController
+from .ImageSelectorFrame import ImageSelectorFrame
 import tkinter.filedialog as filedialog
+from typing import List
 
 
 class ImageSelectorFrameController():
-    def __init__(self, view):
+    def __init__(
+            self,
+            view: ImageSelectorFrame
+        ) -> None:
         self.view = view
-
+        self.galleryFrameController = GalleryFrameController(self.view.galleryFrame)
         self.view.sel_imgs_btn.configure(command=self.openImgSelDialog)
 
-    def openImgSelDialog(self):
+    def openImgSelDialog(self) -> None:
         fileTypes = [("Image files", "*.jpg *.jpeg *.png *.gif *.bmp")]
         imgPaths = filedialog.askopenfilenames(filetypes=fileTypes)
-        self.view.galleryFrame.controller.loadThumbs(imgPaths)
+        self.galleryFrameController.loadThumbs(imgPaths)
+        
+    def getImagePaths(self) -> List[str]:
+        return self.galleryFrameController.getImagePaths()

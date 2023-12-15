@@ -1,7 +1,4 @@
-from utils.ConfigMapper import ConfigMapper
-from .OutputPathSelectorController import OutputPathSelectorController
 from view.infoWindow.InfoWindow import InfoWindow
-from view.customFrame.CustomFrame import CustomFrame
 from config.config import PADDING_S, PADDING_M
 from typing import Callable, Tuple
 from utils.GettextConfig import _
@@ -9,7 +6,7 @@ import customtkinter as ctk
 from PIL import Image
 
 
-class OutputPathSelector(CustomFrame):
+class OutputPathSelector(ctk.CTkFrame):
     def __init__(
             self,
             master: any,
@@ -22,7 +19,6 @@ class OutputPathSelector(CustomFrame):
             border_color: str | Tuple[str, str] | None = None,
             background_corner_colors: Tuple[str | Tuple[str, str]] | None = None,
             overwrite_preferred_drawing_method: str | None = None,
-            configMapper: ConfigMapper = None,
             **kwargs,
         ) -> None:
         super().__init__(
@@ -36,10 +32,8 @@ class OutputPathSelector(CustomFrame):
             border_color,
             background_corner_colors,
             overwrite_preferred_drawing_method,
-            configMapper,
             **kwargs
         )
-        self.controller = OutputPathSelectorController(self, self.configMapper)
 
         img_save = ctk.CTkImage(Image.open("images/img_save_white.png"))
         
@@ -50,7 +44,6 @@ class OutputPathSelector(CustomFrame):
         self.imgOutputPath = ctk.CTkEntry(
             self,
             placeholder_text=_("Location of photos"),
-            textvariable=self.controller.imgOutputPathText
         )
         self.imgOutputPath.pack(
             padx=PADDING_M,
@@ -62,8 +55,7 @@ class OutputPathSelector(CustomFrame):
             self,
             text=_("Select a save location"),
             image=img_save,
-            compound=ctk.RIGHT,
-            command=self.controller.openDirSelDialog
+            compound=ctk.RIGHT
         )
         self.imgActionBtn.pack(
             padx=PADDING_M,
@@ -103,9 +95,6 @@ class OutputPathSelector(CustomFrame):
             padx=PADDING_M,
             pady=[PADDING_S, 0]
         )
-
-    def getOutputPath(self) -> str:
-        return self.controller.imgOutputPathText.get()
     
-    def setConvertCallback(self, callback: Callable[[], None] = None):
+    def setConvertCallback(self, callback: Callable[[], None] = None) -> None:
         self.imgConvertBtn.configure(command=callback)

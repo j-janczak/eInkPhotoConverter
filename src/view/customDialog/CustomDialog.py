@@ -28,3 +28,8 @@ class CustomDialog(CTkToplevel):
         yPos = self.window.winfo_y() + (self.window.winfo_height() // 2) - \
             (self.winfo_height() // 2)
         self.geometry(f"+{xPos}+{yPos}")
+
+    def customDestroy(self):
+        self.after_idle(
+            self.destroy
+        )
