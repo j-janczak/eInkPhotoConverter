@@ -42,7 +42,7 @@ class CustomDialog(CTkToplevel):
             self.wait_visibility()
         self.centerDialog()
         self.grab_set()
-        icon = PhotoImage(file=getPath("icon.png"))
+        icon = PhotoImage(file=getPath("icon_mac.png")) if sys.platform == "darwin" else PhotoImage(file=getPath("icon.png"))
         self.wm_iconbitmap()
         self.after(300, lambda:self.iconphoto(False, icon))
 
