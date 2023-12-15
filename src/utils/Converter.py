@@ -22,6 +22,7 @@ def convertImages(
 ) -> None:
     filesCount = len(imagePaths)
     filesProgress = 0
+    fileSuccess = 0
     errorFiles: List[ConvertErrorModel] = []
     for imagePath in imagePaths:
         filesProgress += 1
@@ -30,6 +31,7 @@ def convertImages(
         progressCallback(fileName, filesProgress, filesCount)
 
         if not os.path.isfile(imagePath):
+            print(f"Unable to open {fileName}")
             errorFiles.append(ConvertErrorModel(
                 file=fileName,
                 reason=_("Unable to open")
@@ -89,4 +91,7 @@ def convertImages(
                 file=fileName,
                 reason=_("Unable to save")
             ))
+        fileSuccess += 1
+        print(f"Conversion progress...\nSuccess: {fileSuccess}\nErrors:{len(errorFiles)}\nAll:{filesCount}")
+    print(f"Conversion end\nSuccess: {fileSuccess}\nErrors:{len(errorFiles)}\nAll:{filesCount}")
     endCallback(errorFiles)
