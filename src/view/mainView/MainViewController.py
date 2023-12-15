@@ -11,6 +11,7 @@ from typing import List
 import subprocess
 import threading
 import sys
+import os
 
 
 class MainViewController:
@@ -84,8 +85,8 @@ class MainViewController:
 
     def openFolder(self, path):
         if sys.platform == 'win32':
-            subprocess.Popen(['explorer', path])
+            os.startfile(path)
         elif sys.platform == 'darwin':
             subprocess.Popen(['open', path])
-        else:  # linux
+        else:
             subprocess.Popen(['xdg-open', path])
