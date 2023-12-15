@@ -1,5 +1,5 @@
 from view.customDialog.CustomDialog import CustomDialog
-from config.config import PADDING_S, PADDING_M
+from config.DimAndColors import PADDING_S, PADDING_M
 from utils.GettextConfig import _
 from typing import Callable
 import customtkinter as ctk
@@ -23,6 +23,7 @@ class InfoDialog(CustomDialog):
             **kwargs
         )
         self.title(_("Info"))
+        self.resizable(width=False, height=False)
 
         self.grid_columnconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)
@@ -62,6 +63,8 @@ class InfoDialog(CustomDialog):
                 padx=PADDING_M,
                 pady=[PADDING_S, PADDING_M]
             )
+        
+        self.grabAndCenter()
 
     def executeCommand(self, command: Callable):
         command()

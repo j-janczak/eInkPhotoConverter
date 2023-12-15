@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-15 16:39+0100\n"
-"PO-Revision-Date: 2023-12-15 16:41+0100\n"
+"POT-Creation-Date: 2023-12-16 19:24+0100\n"
+"PO-Revision-Date: 2023-12-16 19:30+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -17,76 +17,80 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.1\n"
 
-#: ../src/utils/Converter.py:35
+#: ../src/utils/Converter.py:37
 msgid "Unable to open"
 msgstr "Nie można otworzyć pliku"
 
-#: ../src/utils/Converter.py:90
+#: ../src/utils/Converter.py:92
 msgid "Unable to save"
 msgstr "Nie można zapisać pliku"
 
-#: ../src/view/rightFrame/RightFrame.py:46
-msgid "Location of photos"
-msgstr "Lokalizacja zdjęć"
+#: ../src/view/galleryFrame/GalleryFrameController.py:24
+msgid "Creating thumbnails..."
+msgstr "Tworzenie miniatur…"
 
-#: ../src/view/rightFrame/RightFrame.py:56
-msgid "Select a save location"
-msgstr "Wybierz lokalizację zapisu"
+#: ../src/view/imageSelectorFrame/ImageSelectorFrame.py:43
+msgid "Selected photos"
+msgstr "Wybrane zdjęcia"
 
-#: ../src/view/rightFrame/RightFrame.py:68
-msgid "Help"
-msgstr "Pomoc"
+#: ../src/view/imageSelectorFrame/ImageSelectorFrame.py:54
+msgid "Select photos"
+msgstr "Wybierz zdjęcia"
 
-#: ../src/view/rightFrame/RightFrame.py:82
-msgid "Convert!"
-msgstr "Konwertuj!"
+#: ../src/view/imageSelectorFrame/ImageSelectorFrameController.py:20
+msgid "Image files"
+msgstr "Pliki graficzne"
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:52
+#: ../src/view/imageSelectorFrame/ImageSelectorFrameController.py:26
+msgid "You can select a maximum of 100 files"
+msgstr "Można wybrać maksymalnie 100 plików"
+
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:53
 msgid "Convert settings"
 msgstr "Ustawienia konwersji"
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:59
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:60
 msgid "Dithering algorithm"
 msgstr "Algorytm ditheringu"
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:60
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:61
 msgid "None"
 msgstr "Brak"
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:60
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:61
 msgid "Floyd-Steinberg"
 msgstr "Floyd-Steinberg"
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:73
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:74
 msgid "Transform mode"
 msgstr "Metoda przekształcania"
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:74
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:75
 msgid "Crop"
 msgstr "Przytnij"
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:74
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:75
 msgid "Fit"
 msgstr "Dopasuj"
 
-#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:74
+#: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:75
 msgid "Stretch"
 msgstr "Rozciągnij"
 
-#: ../src/view/infoWindow/InfoWindow.py:25
-msgid "About"
-msgstr "O programie"
+#: ../src/view/infoDialog/InfoDialog.py:25
+msgid "Info"
+msgstr "Info"
 
-#: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:51
+#: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:63
 #: ../src/view/mainView/MainView.py:23
 msgid "eInk Photo Converter"
 msgstr "eInk Photo Converter"
 
-#: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:64
+#: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:76
 msgid "By Jakub Janczak"
 msgstr "By Jakub Janczak"
 
-#: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:72
+#: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:84
 msgid ""
 "\n"
 "App language\n"
@@ -96,13 +100,21 @@ msgstr ""
 "Język aplikacji\n"
 "(Wymaga restartu)\n"
 
-#: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:87
+#: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:99
 msgid "v 1.0"
 msgstr "v 1.0"
 
-#: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:96
+#: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:108
 msgid "GitHub"
 msgstr "Github"
+
+#: ../src/view/infoWindow/creditsFame/CreditsFrame.py:40
+msgid "Credits"
+msgstr "Podziękowania"
+
+#: ../src/view/infoWindow/InfoWindow.py:26
+msgid "About"
+msgstr "O programie"
 
 #: ../src/view/infoWindow/manualFrame/ManualFrame.py:39
 msgid ""
@@ -172,42 +184,38 @@ msgstr ""
 "rozciągnięty, aby wypełnić całą dostępną przestrzeń. Powoduje to "
 "zniekształcenie obrazu."
 
-#: ../src/view/infoDialog/InfoDialog.py:25
-msgid "Info"
-msgstr "Info"
-
-#: ../src/view/mainView/MainViewController.py:38
+#: ../src/view/mainView/MainViewController.py:39
 msgid "No files selected"
 msgstr "Nie wybrano plików"
 
-#: ../src/view/mainView/MainViewController.py:44
+#: ../src/view/mainView/MainViewController.py:46
+msgid "Save location not selected"
+msgstr "Nie wybrano lokalizacji zapisu"
+
+#: ../src/view/mainView/MainViewController.py:52
 msgid "Converting..."
 msgstr "Konwertowanie…"
 
-#: ../src/view/mainView/MainViewController.py:70
+#: ../src/view/mainView/MainViewController.py:78
 msgid "Image conversion completed successfully!"
 msgstr "Konwersja zdjęć zakończona sukcesem!"
 
-#: ../src/view/mainView/MainViewController.py:72
+#: ../src/view/mainView/MainViewController.py:80
 msgid "There were errors converting some images"
 msgstr "Wystąpiły błędy podczas konwersji niektórych obrazów"
 
-#: ../src/view/mainView/MainViewController.py:80
+#: ../src/view/mainView/MainViewController.py:88
 msgid "Open folder"
 msgstr "Otwórz folder"
 
-#: ../src/view/galleryFrame/GalleryFrameController.py:24
-msgid "Creating thumbnails..."
-msgstr "Tworzenie miniatur…"
+#: ../src/view/rightFrame/RightFrame.py:54
+msgid "Select a save location"
+msgstr "Wybierz folder zapisu"
 
-#: ../src/view/imageSelectorFrame/ImageSelectorFrameController.py:19
-msgid "Image files"
-msgstr "Pliki graficzne"
+#: ../src/view/rightFrame/RightFrame.py:66
+msgid "Help"
+msgstr "Pomoc"
 
-#: ../src/view/imageSelectorFrame/ImageSelectorFrame.py:42
-msgid "Selected photos"
-msgstr "Wybrane zdjęcia"
-
-#: ../src/view/imageSelectorFrame/ImageSelectorFrame.py:53
-msgid "Select photos"
-msgstr "Wybierz zdjęcia"
+#: ../src/view/rightFrame/RightFrame.py:80
+msgid "Convert!"
+msgstr "Konwertuj!"

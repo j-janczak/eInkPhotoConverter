@@ -1,6 +1,7 @@
 from view.galleryFrame.GalleryFrame import GalleryFrame
-from config.config import PADDING_M, PADDING_S
+from config.DimAndColors import PADDING_M, PADDING_S
 from utils.GettextConfig import _
+from utils.Utils import getPath
 import customtkinter as ctk
 from typing import Tuple
 from PIL import Image
@@ -35,7 +36,7 @@ class ImageSelectorFrame(ctk.CTkFrame):
             **kwargs
         )
 
-        img_photo = ctk.CTkImage(Image.open("images/img_photo_white.png"))
+        img_photo = ctk.CTkImage(Image.open(getPath("img_photo_white.png")))
 
         self.galleryFrame = GalleryFrame(
             self,

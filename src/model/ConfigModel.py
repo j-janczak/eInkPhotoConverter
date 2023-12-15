@@ -1,6 +1,7 @@
 from .ImageSettingsModel import ImageSettingsModel
 from pydantic import BaseModel
 from enum import IntEnum
+import os
 
 
 class Language(IntEnum):
@@ -13,5 +14,5 @@ class Language(IntEnum):
 
 class ConfigModel(BaseModel):
     imageSettings: ImageSettingsModel = ImageSettingsModel()
-    outputPath: str = "",
+    outputPath: str = os.getcwd()
     language: Language = Language.ENGLISH

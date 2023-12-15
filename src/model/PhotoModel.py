@@ -1,5 +1,5 @@
 from customtkinter import CTkImage, CTkFrame, CTkLabel
-from config.config import IMG_THUMB_BG, PADDING_S
+from config.DimAndColors import IMG_THUMB_BG, PADDING_S
 from dataclasses import dataclass
 
 

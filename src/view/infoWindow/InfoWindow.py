@@ -2,7 +2,8 @@ from view.customDialog.CustomDialog import CustomDialog
 from .appInfoFrame.AppInfoFrame import AppInfoFrame
 from .appInfoFrame.AppInfoFrameController import AppInfoFrameController
 from .manualFrame.ManualFrame import ManualFrame
-from config.config import PADDING_S, PADDING_M
+from .creditsFame.CreditsFrame import CreditsFrame
+from config.DimAndColors import PADDING_S, PADDING_M
 from utils.GettextConfig import _
 import customtkinter as ctk
 from typing import Tuple
@@ -36,8 +37,16 @@ class InfoWindow(CustomDialog):
 
         ManualFrame(self).pack(
             fill=ctk.BOTH,
-            expand=True,
+            side=ctk.LEFT,
+            padx=[PADDING_S, PADDING_S],
+            pady=PADDING_M
+        )
+
+        CreditsFrame(self).pack(
+            fill=ctk.BOTH,
             side=ctk.LEFT,
             padx=[PADDING_S, PADDING_M],
             pady=PADDING_M
         )
+
+        self.grabAndCenter()

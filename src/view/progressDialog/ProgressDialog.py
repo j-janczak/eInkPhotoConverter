@@ -1,6 +1,6 @@
 from view.customDialog.CustomDialog import CustomDialog
-from config.config import PADDING_M
-from utils.utils import shortenText
+from config.DimAndColors import PADDING_M
+from utils.Utils import shortenText
 from customtkinter import CTk
 from _tkinter import TclError
 import customtkinter as ctk
@@ -22,8 +22,7 @@ class ProgressDialog(CustomDialog):
             window=window,
             **kwargs
         )
-        self.update_idletasks()
-
+        self.resizable(width=False, height=False)
         self.overrideredirect(True)
 
         self.dialogFrame = ctk.CTkFrame(self)
@@ -47,10 +46,9 @@ class ProgressDialog(CustomDialog):
         )
 
         self.text = text
+        self.grabAndCenter()
 
     def progress(self, fileName: str, step: int, of: int) -> None:
-        self.update_idletasks()
-        
         progressText = f"{self.text}: \"{shortenText(fileName, 15)}\" {step}/{of}"
         self.progressTextWidget.configure(text=progressText)
         self.progressBar.set(step/of)

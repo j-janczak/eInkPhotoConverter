@@ -1,7 +1,7 @@
 from ..imageSettingsFrame.ImageSettingsFrame import ImageSettingsFrame
 from ..imageSelectorFrame.ImageSelectorFrame import ImageSelectorFrame
 from ..rightFrame.RightFrame import RightFrame
-from config.config import PADDING_S, PADDING_M
+from config.DimAndColors import PADDING_S, PADDING_M
 from utils.GettextConfig import _
 import customtkinter as ctk
 from typing import Tuple
