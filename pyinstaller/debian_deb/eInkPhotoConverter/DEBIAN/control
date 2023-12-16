@@ -1,9 +1,11 @@
 Package: eInkPhotoConverter
 Version: 1.0
-Section: custom
-Priority: optional
-Architecture: x86
-Essential: no
-Installed-Size: 32000
 Maintainer: Jakub Janczak <kubjan4@gmail.com>
 Description: The "eInk Photo Converter" program converts photos into 24-bit BMP files with a resolution of 800x480, utilizing a 7-color palette. Photos in this format are suitable for display on the PhotoPainter device from WaveShare.
+Priority: optional
+Architecture: amd64
+Essential: no
+Installed-Size: 17439
+Section: utils
+Category: Graphics
+Homepage: https://github.com/TheFlashes/eInkPhotoConverter
