@@ -1,0 +1,123 @@
+name: Cross-Platform Build and Release
+
+
+on:
+  workflow_dispatch:
+    inputs:
+      tagName:
+        description: 'Tag Name for Release (e.g., v1.0.0)'
+        required: true
+      releaseTitle:
+        description: 'Title of Release'
+        required: true
+
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pyinstaller
+    - name: Build with PyInstaller
+      run: |
+        cd pyinstaller
+        pyinstaller windows.spec
+    - name: Compress to .zip
+      run: Compress-Archive -Path "pyinstaller/dist/*" -DestinationPath "pyinstaller/eInkPhotoConverter_windows_amd64.zip"
+    - name: Upload Windows Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: eInkPhotoConverter_windows_amd64
+        path: pyinstaller/eInkPhotoConverter_windows_amd64.zip
+
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pyinstaller
+    - name: Build with PyInstaller
+      run: |
+        cd pyinstaller
+        pyinstaller linux.spec
+    - name: Build deb package
+      run: |
+        cd pyinstaller
+        mkdir -p debian_deb/eInkPhotoConverter/usr/local/bin/
+        cp dist/eInkPhotoConverter debian_deb/eInkPhotoConverter/usr/local/bin/eInkPhotoConverter
+        chmod +x debian_deb/eInkPhotoConverter/usr/local/bin/eInkPhotoConverter
+        dpkg-deb --build debian_deb/eInkPhotoConverter/
+        cp debian_deb/eInkPhotoConverter.deb dist/eInkPhotoConverter.deb
+    - name: Compress to .tar.gz
+      run: tar czvf pyinstaller/eInkPhotoConverter_linux_amd64.tar.gz -C pyinstaller/dist .
+    - name: Upload Linux Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: eInkPhotoConverter_linux_amd64
+        path: pyinstaller/eInkPhotoConverter_linux_amd64.tar.gz
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pyinstaller
+    - name: Build with PyInstaller
+      run: |
+        cd pyinstaller
+        pyinstaller macos.spec
+    - name: Build MacOS .app bundle
+      run: |
+        cd pyinstaller
+        chmod +x dist/eInkPhotoConverter.app/Contents/MacOS/eInkPhotoConverter
+        mkdir dmg
+        rm -r dist/eInkPhotoConverter
+        hdiutil create -volname "eInkPhotoConverter_macos_amd64" -srcfolder dist -ov -format UDZO dmg/eInkPhotoConverter_macos_amd64.dmg
+    - name: Upload MacOS Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: eInkPhotoConverter_macos_amd64
+        path: ./pyinstaller/dmg
+
+  create-release:
+    needs: [build-windows, build-linux, build-macos]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      - name: Display structure of downloaded files
+        run: ls -R
+      - name: Create Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+              find artifacts/ -type f | xargs \
+              gh release create "${{ github.event.inputs.tagName }}" \
+              --repo="$GITHUB_REPOSITORY" \
+              --title="${{ github.event.inputs.releaseTitle }}" \
+              --generate-notes

@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="eInk Photo Converter logo" src="https://github.com/TheFlashes/eInkPhotoConverter/blob/main/icon/linux/eInkPhotoConverter_256x256.png" />
+  <img alt="eInk Photo Converter logo" src="icon/linux/eInkPhotoConverter_256x256.png" />
 </p>
 
 # eInk Photo Converter
@@ -10,7 +10,7 @@ eInk Photo Converter is a GUI application for converting any photos into a forma
 
 Ready-made binaries for Windows, MacOS, and Linux are available for download from the link below. The MacOS version is compiled for x86, as some libraries do not have fat binaries, which prevented me from creating a universal bundle. If you have a Mac with an M chip, I recommend downloading the source and compiling the application yourself with pyinstaller (The file with the specification can be found in the "pyinstaller" folder) or simply by running it using Python.
 
-### [Download](www.google.com)
+### [Download](https://github.com/TheFlashes/eInkPhotoConverter/releases)
 
 ## Running app from the source
 
@@ -30,4 +30,4 @@ Ready-made binaries for Windows, MacOS, and Linux are available for download fro
    python3 main.py
    ```
 
-![Screenshot](https://raw.githubusercontent.com/TheFlashes/eInkPhotoConverter/main/icon/Screenshot%202023-12-16%20at%2020.12.49.png?token=GHSAT0AAAAAACLRZ7JEPDVBKLC4FRV2DOKCZL565CA)
+![Screenshot](icon/preview_screenshot.png)

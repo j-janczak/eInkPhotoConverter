@@ -42,3 +42,4 @@ app = BUNDLE(
     icon='../icon/macos/icon.icns',
     bundle_identifier=None,
 )
+
