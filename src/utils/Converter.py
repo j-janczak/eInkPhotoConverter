@@ -92,6 +92,6 @@ def convertImages(
                 reason=_("Unable to save")
             ))
         fileSuccess += 1
-        print(f"Conversion progress...\nSuccess: {fileSuccess}\nErrors:{len(errorFiles)}\nAll:{filesCount}")
+        print(f"{fileSuccess + len(errorFiles)}/{filesCount} \"{imagePath}\"")
     print(f"Conversion end\nSuccess: {fileSuccess}\nErrors:{len(errorFiles)}\nAll:{filesCount}")
     endCallback(errorFiles)
