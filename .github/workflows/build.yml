@@ -48,7 +48,8 @@ jobs:
         pyinstaller linux.spec
         mkdir -p debian_deb/eInkPhotoConverter/usr/local/bin/
         cp dist/eInkPhotoConverter debian_deb/eInkPhotoConverter/usr/local/bin/eInkPhotoConverter
-        dpkg-deb --build debian_deb
+        chmod +x debian_deb/eInkPhotoConverter/usr/local/bin/eInkPhotoConverter
+        dpkg-deb --build debian_deb/eInkPhotoConverter/
         cp debian_deb/eInkPhotoConverter.deb dist/eInkPhotoConverter.deb
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
@@ -81,4 +82,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: eInkPhotoConverter_macos_x86_64
-        path: ./pyinstaller/dist
+        path: ./pyinstaller/dmg
