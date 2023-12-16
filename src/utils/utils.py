@@ -1,3 +1,4 @@
+import customtkinter as ctk
 import sys
 import os
 
@@ -18,3 +19,8 @@ def getPath(imgName: str, locale: bool = False):
     return os.path.join(base_path, 'locale', imgName) if locale else os.path.join(base_path, 'images', imgName)
 
 
+def setIcon(window: ctk.CTk | ctk.CTkToplevel):  
+    if sys.platform == 'darwin':
+        window.iconbitmap(getPath("mac_icon.icns"))
+    else:
+        window.iconbitmap(getPath("windows_icon.ico"))

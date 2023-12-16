@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=eInk Photo Converter
+Exec=/ścieżka/do/aplikacji
+Icon=eInkPhotoConverter
+Terminal=false

@@ -1,8 +1,6 @@
 from customtkinter import CTkToplevel, CTk
-from utils.Utils import getPath
-from tkinter import PhotoImage
+from utils.Utils import setIcon
 from typing import Tuple
-import sys
 
 
 class CustomDialog(CTkToplevel):
@@ -43,9 +41,8 @@ class CustomDialog(CTkToplevel):
             self.wait_visibility()
         self.centerDialog()
         self.grab_set()
-        icon = PhotoImage(file=getPath("icon_mac.png")) if sys.platform == "darwin" else PhotoImage(file=getPath("icon.png"))
         self.wm_iconbitmap()
-        self.after(300, lambda:self.iconphoto(False, icon))
+        self.after(300, lambda:setIcon(self))
 
     def onVisibilityChange(self, e):
         self.active = True
