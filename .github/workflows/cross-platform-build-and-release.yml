@@ -33,7 +33,7 @@ jobs:
     - name: Upload Windows Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: eInkPhotoConverter_windows_x86_64
+        name: eInkPhotoConverter_windows_amd64
         path: pyinstaller/dist
 
   build-linux:
@@ -64,7 +64,7 @@ jobs:
     - name: Upload Linux Artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: eInkPhotoConverter_linux_x86_64
+        name: eInkPhotoConverter_linux_amd64
         path: ./pyinstaller/dist
 
   build-macos:
@@ -90,11 +90,11 @@ jobs:
         chmod +x dist/eInkPhotoConverter.app/Contents/MacOS/eInkPhotoConverter
         mkdir dmg
         rm -r dist/eInkPhotoConverter
-        hdiutil create -volname "eInkPhotoConverter_macos_x86_64" -srcfolder dist -ov -format UDZO dmg/eInkPhotoConverter_macos_x86_64.dmg
+        hdiutil create -volname "eInkPhotoConverter_macos_amd64" -srcfolder dist -ov -format UDZO dmg/eInkPhotoConverter_macos_amd64.dmg
     - name: Upload MacOS Artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: eInkPhotoConverter_macos_x86_64
+        name: eInkPhotoConverter_macos_amd64
         path: ./pyinstaller/dmg
 
   create-release:
@@ -107,9 +107,12 @@ jobs:
           path: artifacts
 
       - name: Create Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: artifacts/**
-          tag_name: ${{ github.event.inputs.tagName }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+              ls artifacts/* | xargs \
+              gh release create "$tag" \
+              --repo="$GITHUB_REPOSITORY" \
+              --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
+              --generate-notes
