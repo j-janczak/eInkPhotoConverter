@@ -3,92 +3,92 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-12-16 19:24+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2023-12-16 19:30+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #: ../src/utils/Converter.py:37
 msgid "Unable to open"
-msgstr ""
+msgstr "Nie można otworzyć pliku"
 
 #: ../src/utils/Converter.py:92
 msgid "Unable to save"
-msgstr ""
+msgstr "Nie można zapisać pliku"
 
 #: ../src/view/galleryFrame/GalleryFrameController.py:24
 msgid "Creating thumbnails..."
-msgstr ""
+msgstr "Tworzenie miniatur…"
 
 #: ../src/view/imageSelectorFrame/ImageSelectorFrame.py:43
 msgid "Selected photos"
-msgstr ""
+msgstr "Wybrane zdjęcia"
 
 #: ../src/view/imageSelectorFrame/ImageSelectorFrame.py:54
 msgid "Select photos"
-msgstr ""
+msgstr "Wybierz zdjęcia"
 
 #: ../src/view/imageSelectorFrame/ImageSelectorFrameController.py:20
 msgid "Image files"
-msgstr ""
+msgstr "Pliki graficzne"
 
 #: ../src/view/imageSelectorFrame/ImageSelectorFrameController.py:26
 msgid "You can select a maximum of 100 files"
-msgstr ""
+msgstr "Można wybrać maksymalnie 100 plików"
 
 #: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:53
 msgid "Convert settings"
-msgstr ""
+msgstr "Ustawienia konwersji"
 
 #: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:60
 msgid "Dithering algorithm"
-msgstr ""
+msgstr "Algorytm ditheringu"
 
 #: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:61
 msgid "None"
-msgstr ""
+msgstr "Brak"
 
 #: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:61
 msgid "Floyd-Steinberg"
-msgstr ""
+msgstr "Floyd-Steinberg"
 
 #: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:74
 msgid "Transform mode"
-msgstr ""
+msgstr "Metoda przekształcania"
 
 #: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:75
 msgid "Crop"
-msgstr ""
+msgstr "Przytnij"
 
 #: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:75
 msgid "Fit"
-msgstr ""
+msgstr "Dopasuj"
 
 #: ../src/view/imageSettingsFrame/ImageSettingsFrame.py:75
 msgid "Stretch"
-msgstr ""
+msgstr "Rozciągnij"
 
 #: ../src/view/infoDialog/InfoDialog.py:25
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:63
 #: ../src/view/mainView/MainView.py:23
 msgid "eInk Photo Converter"
-msgstr ""
+msgstr "eInk Photo Converter"
 
 #: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:76
 msgid "By Jakub Janczak"
-msgstr ""
+msgstr "By Jakub Janczak"
 
 #: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:84
 msgid ""
@@ -96,22 +96,25 @@ msgid ""
 "App language\n"
 "(Requires app restart)\n"
 msgstr ""
+"\n"
+"Język aplikacji\n"
+"(Wymaga restartu)\n"
 
 #: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:99
 msgid "v 1.0"
-msgstr ""
+msgstr "v 1.0"
 
 #: ../src/view/infoWindow/appInfoFrame/AppInfoFrame.py:108
 msgid "GitHub"
-msgstr ""
+msgstr "Github"
 
 #: ../src/view/infoWindow/creditsFame/CreditsFrame.py:40
 msgid "Credits"
-msgstr ""
+msgstr "Podziękowania"
 
 #: ../src/view/infoWindow/InfoWindow.py:26
 msgid "About"
-msgstr ""
+msgstr "O programie"
 
 #: ../src/view/infoWindow/manualFrame/ManualFrame.py:39
 msgid ""
@@ -119,16 +122,22 @@ msgid ""
 "with a resolution of 800x480, utilizing a 7-color palette. Photos in this "
 "format are suitable for display on the PhotoPainter device from WaveShare."
 msgstr ""
+"Program “eInk Photo Converter” konwertuje zdjęcia na 24-bitowe pliki BMP o "
+"rozdzielczości 800x480, wykorzystując paletę 7 kolorów. Zdjęcia w tym "
+"formacie nadają się do wyświetlania na urządzeniu PhotoPainter od firmy "
+"WaveShare."
 
 #: ../src/view/infoWindow/manualFrame/ManualFrame.py:49
 msgid "Dithering algorithm settings:"
-msgstr ""
+msgstr "Ustawienia algorytmu ditheringu:"
 
 #: ../src/view/infoWindow/manualFrame/ManualFrame.py:63
 msgid ""
 "None - does not apply a dithering algorithm; for each pixel of the image, "
 "the most fitting color from the seven-color palette is chosen."
 msgstr ""
+"Brak - nie stosuje algorytmu ditheringu; dla każdego piksela obrazu "
+"wybierany jest najbardziej pasujący kolor z palety siedmiu kolorów."
 
 #: ../src/view/infoWindow/manualFrame/ManualFrame.py:74
 msgid ""
@@ -136,16 +145,22 @@ msgid ""
 "distributes the quantization error of a pixel to its neighboring pixels, "
 "allowing for smoother color transitions. (Recommend)"
 msgstr ""
+"Floyd-Steinberg - Symuluje większą głębię kolorów przy użyciu ograniczonej "
+"palety. Rozprowadza błąd kwantyzacji piksela na sąsiednie piksele, co "
+"pozwala na płynniejsze przejścia kolorów. (Polecane)"
 
 #: ../src/view/infoWindow/manualFrame/ManualFrame.py:85
 msgid "Transform mode settings:"
-msgstr ""
+msgstr "Metody przszkształcania:"
 
 #: ../src/view/infoWindow/manualFrame/ManualFrame.py:99
 msgid ""
 "Crop - If the image has different proportions than the target size, it is "
 "cropped to fill the entire available space. This may result in trimmed edges."
 msgstr ""
+"Przytnij - Jeżeli obraz ma inne proporcje niż docelowy rozmiar, zostaje "
+"przycięty tak, aby wypełnić całą dostępną przestrzeń. Może to skutkować "
+"przycięciem krawędzi."
 
 #: ../src/view/infoWindow/manualFrame/ManualFrame.py:110
 msgid ""
@@ -154,6 +169,10 @@ msgid ""
 "dimensions. If the proportions differ from the target dimensions, empty "
 "spaces are filled with a white background."
 msgstr ""
+"Dopasuj - Jeżeli obraz ma inne proporcje niż docelowy rozmiar, jest "
+"zmniejszany z zachowaniem proporcji tak, aby cały zmieścił się w zadanych "
+"wymiarach. Jeżeli proporcje są inne niż w docelowych wymiarach, puste "
+"przestrzenie zostają wypełnione białym tłem."
 
 #: ../src/view/infoWindow/manualFrame/ManualFrame.py:121
 msgid ""
@@ -161,39 +180,42 @@ msgid ""
 "stretched to fill the entire available space. This results in distortion of "
 "the image."
 msgstr ""
+"Rozciągnij - Jeżeli obraz ma inne proporcje niż docelowy rozmiar, zostaje "
+"rozciągnięty, aby wypełnić całą dostępną przestrzeń. Powoduje to "
+"zniekształcenie obrazu."
 
 #: ../src/view/mainView/MainViewController.py:39
 msgid "No files selected"
-msgstr ""
+msgstr "Nie wybrano plików"
 
 #: ../src/view/mainView/MainViewController.py:46
 msgid "Save location not selected"
-msgstr ""
+msgstr "Nie wybrano lokalizacji zapisu"
 
 #: ../src/view/mainView/MainViewController.py:52
 msgid "Converting..."
-msgstr ""
+msgstr "Konwertowanie…"
 
 #: ../src/view/mainView/MainViewController.py:78
 msgid "Image conversion completed successfully!"
-msgstr ""
+msgstr "Konwersja zdjęć zakończona sukcesem!"
 
 #: ../src/view/mainView/MainViewController.py:80
 msgid "There were errors converting some images"
-msgstr ""
+msgstr "Wystąpiły błędy podczas konwersji niektórych obrazów"
 
 #: ../src/view/mainView/MainViewController.py:88
 msgid "Open folder"
-msgstr ""
+msgstr "Otwórz folder"
 
 #: ../src/view/rightFrame/RightFrame.py:54
 msgid "Select a save location"
-msgstr ""
+msgstr "Wybierz folder zapisu"
 
 #: ../src/view/rightFrame/RightFrame.py:66
 msgid "Help"
-msgstr ""
+msgstr "Pomoc"
 
 #: ../src/view/rightFrame/RightFrame.py:80
 msgid "Convert!"
-msgstr ""
+msgstr "Konwertuj!"
