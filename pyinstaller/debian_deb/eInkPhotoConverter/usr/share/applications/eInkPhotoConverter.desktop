@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=eInk Photo Converter
+Exec=/usr/local/bin/eInkPhotoConverter
+Icon=eInkPhotoConverter
+Terminal=false
+Category=Graphics

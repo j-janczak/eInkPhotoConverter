@@ -1,5 +1,6 @@
 from config.config import PADDING_XS, PADDING_S, PADDING_M
 from ...customSegmentedButtons.CustomSegmentedButtons import CustomSegmentedButtons
+from view.linkLabel.LinkLabel import LinkLabel
 from model.ConfigModel import Language
 from utils.ConfigMapper import config
 from utils.GettextConfig import _
@@ -46,6 +47,16 @@ class AppInfoFrame(ctk.CTkFrame):
             Image.open(getPath("img_lang_eng.png")))
         imgLangPl = ctk.CTkImage(
             Image.open(getPath("img_lang_pl.png")))
+        imgAppLogo = ctk.CTkImage(
+            Image.open(getPath("linux_icon.png")), size=(128, 128))
+        
+        ctk.CTkLabel(
+            self,
+            image=imgAppLogo,
+            text=""
+        ).pack(
+            anchor="n"
+        )
 
         appNameLabel = ctk.CTkLabel(
             self,
@@ -92,15 +103,12 @@ class AppInfoFrame(ctk.CTkFrame):
             padx=PADDING_M,
         )
 
-        githubLink = ctk.CTkLabel(
+        LinkLabel(
             self,
             text=_("GitHub"),
-            text_color="#1F51FF",
-            cursor="hand2"
-        )
-        githubLink.pack(
+            url=GITHUB_URL
+        ).pack(
             side=ctk.BOTTOM,
             anchor="sw",
             padx=PADDING_M
         )
-        githubLink.bind("<Button-1>", lambda e: webbrowser.open_new(GITHUB_URL))
