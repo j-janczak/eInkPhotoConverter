@@ -1,5 +1,5 @@
-from config.config import PADDING_XS, PADDING_S, PADDING_M
-from ...customSegmentedButtons.CustomSegmentedButtons import CustomSegmentedButtons
+from view.customSegmentedButtons.CustomSegmentedButtons import CustomSegmentedButtons
+from config.DimAndColors import PADDING_XS, PADDING_S, PADDING_M
 from view.linkLabel.LinkLabel import LinkLabel
 from model.ConfigModel import Language
 from utils.ConfigMapper import config

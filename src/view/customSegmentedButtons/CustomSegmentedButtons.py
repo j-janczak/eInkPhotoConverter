@@ -1,4 +1,4 @@
-from config.config import PADDING_S, PADDING_XS, PRESSED_BTN_COLOR, SELECTED_BTN_COLOR
+from config.DimAndColors import PADDING_S, PADDING_XS, PRESSED_BTN_COLOR, SELECTED_BTN_COLOR
 from typing import List, Tuple, Callable
 import customtkinter as ctk
 

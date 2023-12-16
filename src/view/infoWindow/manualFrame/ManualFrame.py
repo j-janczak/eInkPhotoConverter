@@ -1,4 +1,4 @@
-from config.config import PADDING_XS, PADDING_S, PADDING_M
+from config.DimAndColors import PADDING_XS, PADDING_S, PADDING_M
 from utils.GettextConfig import _
 import tkinter.font as tkFont
 import customtkinter as ctk

@@ -1,4 +1,4 @@
-from config.config import THUMB_MAX_WIDTH, THUMB_MAX_HEIGHT, THUMB_LABEL_MAX_LEN, THUMB_WIDTH
+from config.DimAndColors import THUMB_MAX_WIDTH, THUMB_MAX_HEIGHT, THUMB_LABEL_MAX_LEN, THUMB_WIDTH
 from view.progressDialog.ProgressDialog import ProgressDialog
 from model.PhotoModel import PhotoModel
 from .GalleryFrame import GalleryFrame

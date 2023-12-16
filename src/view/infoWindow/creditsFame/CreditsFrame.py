@@ -1,5 +1,5 @@
+from config.DimAndColors import PADDING_S
 from .CreditsLabel import CreditsLabel
-from config.config import PADDING_S
 from utils.GettextConfig import _
 import tkinter.font as tkFont
 import customtkinter as ctk

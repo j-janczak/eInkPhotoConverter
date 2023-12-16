@@ -1,4 +1,4 @@
-from config.config import IMG_THUMB_BG, IMG_THUMB_HOVER_BG
+from config.DimAndColors import IMG_THUMB_BG, IMG_THUMB_HOVER_BG
 from customtkinter.windows.widgets.font import CTkFont
 from typing import Tuple, Literal, Tuple
 import customtkinter as ctk

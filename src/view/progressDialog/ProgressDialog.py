@@ -1,5 +1,5 @@
 from view.customDialog.CustomDialog import CustomDialog
-from config.config import PADDING_M
+from config.DimAndColors import PADDING_M
 from utils.Utils import shortenText
 from customtkinter import CTk
 from _tkinter import TclError

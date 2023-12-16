@@ -1,6 +1,6 @@
 
 from view.linkLabel.LinkLabel import LinkLabel
-from config.config import PADDING_S
+from config.DimAndColors import PADDING_S
 import customtkinter as ctk
 from typing import Tuple
 

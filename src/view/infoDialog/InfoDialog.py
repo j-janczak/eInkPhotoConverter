@@ -1,5 +1,5 @@
 from view.customDialog.CustomDialog import CustomDialog
-from config.config import PADDING_S, PADDING_M
+from config.DimAndColors import PADDING_S, PADDING_M
 from utils.GettextConfig import _
 from typing import Callable
 import customtkinter as ctk

@@ -3,7 +3,7 @@ from .appInfoFrame.AppInfoFrame import AppInfoFrame
 from .appInfoFrame.AppInfoFrameController import AppInfoFrameController
 from .manualFrame.ManualFrame import ManualFrame
 from .creditsFame.CreditsFrame import CreditsFrame
-from config.config import PADDING_S, PADDING_M
+from config.DimAndColors import PADDING_S, PADDING_M
 from utils.GettextConfig import _
 import customtkinter as ctk
 from typing import Tuple

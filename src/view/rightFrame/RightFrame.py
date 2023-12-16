@@ -1,5 +1,5 @@
 from view.infoWindow.InfoWindow import InfoWindow
-from config.config import PADDING_S, PADDING_M
+from config.DimAndColors import PADDING_S, PADDING_M
 from utils.GettextConfig import _
 from utils.Utils import getPath
 import customtkinter as ctk

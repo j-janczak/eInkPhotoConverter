@@ -1,5 +1,5 @@
 from view.customSegmentedButtons.CustomSegmentedButtons import CustomSegmentedButtons
-from config.config import PADDING_XS, PADDING_S, PADDING_M
+from config.DimAndColors import PADDING_XS, PADDING_S, PADDING_M
 from model.ImageSettingsModel import Transform
 from utils.ConfigMapper import config
 from utils.GettextConfig import _

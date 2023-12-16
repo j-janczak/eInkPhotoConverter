@@ -1,5 +1,5 @@
 from view.galleryFrame.GalleryFrame import GalleryFrame
-from config.config import PADDING_M, PADDING_S
+from config.DimAndColors import PADDING_M, PADDING_S
 from utils.GettextConfig import _
 from utils.Utils import getPath
 import customtkinter as ctk
