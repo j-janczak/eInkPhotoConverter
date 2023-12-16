@@ -9,9 +9,9 @@ jobs:
   build-windows:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: '3.12.x'
     - name: Install dependencies
@@ -24,17 +24,17 @@ jobs:
         cd pyinstaller
         pyinstaller windows.spec
     - name: Upload Windows Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
-        name: eInkPhotoConverter_windows_x86_64
+        name: eInkPhotoConverter_windows_amd64
         path: pyinstaller/dist
 
   build-linux:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: '3.12.x'
     - name: Install dependencies
@@ -46,23 +46,26 @@ jobs:
       run: |
         cd pyinstaller
         pyinstaller linux.spec
+    - name: Build deb package
+      run: |
+        cd pyinstaller
         mkdir -p debian_deb/eInkPhotoConverter/usr/local/bin/
         cp dist/eInkPhotoConverter debian_deb/eInkPhotoConverter/usr/local/bin/eInkPhotoConverter
         chmod +x debian_deb/eInkPhotoConverter/usr/local/bin/eInkPhotoConverter
         dpkg-deb --build debian_deb/eInkPhotoConverter/
         cp debian_deb/eInkPhotoConverter.deb dist/eInkPhotoConverter.deb
-    - name: Upload Artifacts
-      uses: actions/upload-artifact@v2
+    - name: Upload Linux Artifacts
+      uses: actions/upload-artifact@v4
       with:
-        name: eInkPhotoConverter_linux_x86_64
+        name: eInkPhotoConverter_linux_amd64
         path: ./pyinstaller/dist
 
   build-macos:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: '3.12.x'
     - name: Install dependencies
@@ -74,12 +77,15 @@ jobs:
       run: |
         cd pyinstaller
         pyinstaller macos.spec
+    - name: Build MacOS .app bundle
+      run: |
+        cd pyinstaller
         chmod +x dist/eInkPhotoConverter.app/Contents/MacOS/eInkPhotoConverter
         mkdir dmg
         rm -r dist/eInkPhotoConverter
-        hdiutil create -volname "eInkPhotoConverter_macos_x86_64" -srcfolder dist -ov -format UDZO dmg/eInkPhotoConverter_macos_x86_64.dmg
-    - name: Upload MacOS Artifact
-      uses: actions/upload-artifact@v2
+        hdiutil create -volname "eInkPhotoConverter_macos_amd64" -srcfolder dist -ov -format UDZO dmg/eInkPhotoConverter_macos_amd64.dmg
+    - name: Upload MacOS Artifacts
+      uses: actions/upload-artifact@v4
       with:
-        name: eInkPhotoConverter_macos_x86_64
+        name: eInkPhotoConverter_macos_amd64
         path: ./pyinstaller/dmg

@@ -105,7 +105,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: artifacts
-
+      - name: Display structure of downloaded files
+        run: |
+          ls -R
+          ls artifacts/eInkPhotoConverter_linux_amd64
       - name: Create Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
