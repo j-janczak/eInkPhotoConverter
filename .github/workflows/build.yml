@@ -19,8 +19,6 @@ jobs:
     - name: Package Application
       uses: JackMcKew/pyinstaller-action-windows@main
       with:
-        spec: ./pyinstaller/windows.spec
-        requirements: ./requirements.txt
         path: ./src
 
     - uses: actions/upload-artifact@v2
