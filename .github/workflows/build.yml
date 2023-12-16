@@ -46,6 +46,7 @@ jobs:
       run: |
         cd pyinstaller
         pyinstaller linux.spec
+        mkdir -p debian_deb/eInkPhotoConverter/usr/local/bin/
         cp dist/eInkPhotoConverter debian_deb/eInkPhotoConverter/usr/local/bin/eInkPhotoConverter
         dpkg-deb --build debian_deb
         cp debian_deb/eInkPhotoConverter.deb dist/eInkPhotoConverter.deb
@@ -72,8 +73,10 @@ jobs:
       run: |
         cd pyinstaller
         pyinstaller macos.spec
-        chmod +x dist/eInkPhotoConverter
         chmod +x dist/eInkPhotoConverter.app/Contents/MacOS/eInkPhotoConverter
+        mkdir dmg
+        rm -r dist/eInkPhotoConverter
+        hdiutil create -volname "eInkPhotoConverter_macos_x86_64" -srcfolder dist -ov -format UDZO dmg/eInkPhotoConverter_macos_x86_64.dmg
     - name: Upload MacOS Artifact
       uses: actions/upload-artifact@v2
       with:
