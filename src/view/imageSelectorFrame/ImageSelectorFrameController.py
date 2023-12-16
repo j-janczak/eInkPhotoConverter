@@ -2,7 +2,7 @@ from ..galleryFrame.GalleryFrameController import GalleryFrameController
 from .ImageSelectorFrame import ImageSelectorFrame
 from ..infoDialog.InfoDialog import InfoDialog
 import tkinter.filedialog as filedialog
-from ...utils.GettextConfig import _
+from utils.GettextConfig import _
 from typing import List
 
 
