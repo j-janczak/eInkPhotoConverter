@@ -21,9 +21,9 @@ def getPath(imgName: str, locale: bool = False):
 
 
 def setIcon(window: ctk.CTk | ctk.CTkToplevel):  
-    if sys.platform == 'darwin':
-        window.iconbitmap(getPath("mac_icon.icns"))
-    elif sys.platform == 'win32':
+    if sys.platform == 'win32':
         window.iconbitmap(getPath("windows_icon.ico"))
+    elif sys.platform == 'darwin':
+        window.iconphoto(False, PhotoImage(file=getPath("mac_icon.png")))
     else:
         window.iconphoto(False, PhotoImage(file=getPath("linux_icon.png")))
