@@ -69,6 +69,8 @@ jobs:
       run: |
         cd pyinstaller
         pyinstaller macos.spec
+        chmod +x pyinstaller/dist/eInkPhotoConverter
+        chmod +x pyinstaller/dist/eInkPhotoConverter.app/Contents/MacOS/eInkPhotoConverter
     - name: Upload MacOS Artifact
       uses: actions/upload-artifact@v2
       with:
