@@ -46,6 +46,9 @@ jobs:
       run: |
         cd pyinstaller
         pyinstaller linux.spec
+        cp dist/eInkPhotoConverter debian_deb/eInkPhotoConverter/usr/local/bin/eInkPhotoConverter
+        dpkg-deb --build debian_deb
+        cp debian_deb/eInkPhotoConverter.deb dist/eInkPhotoConverter.deb
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
       with:
