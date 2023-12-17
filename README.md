@@ -4,7 +4,7 @@
 
 # eInk Photo Converter
 
-eInk Photo Converter is a GUI application for converting any photos into a format compatible with eInk screens. For now, it supports the [WaveShare 7-Color E-Paper E-Ink Display](https://www.waveshare.com/wiki/7.3inch_e-Paper_HAT_(F)_Manual#Overview), but in the future, I plan to add options to convert photos into more formats. Currently, the app converts images to 24-bit BMP with a 7-color palette. The application was written in Python using the customtkinter interface. The photo converter utilizes the Pillow library, and you can take a closer look at it here: [Converter.py](https://github.com/TheFlashes/eInkPhotoConverter/blob/main/src/utils/Converter.py). I based my work on the converter used for [PhotoPainter](https://www.waveshare.com/wiki/PhotoPainter), however, I have made improvements and added new features.
+eInk Photo Converter is a GUI application for converting any photos into a format compatible with eInk screens. For now, it supports the [WaveShare 7-Color E-Paper E-Ink Display](https://www.waveshare.com/wiki/7.3inch_e-Paper_HAT_(F)_Manual#Overview), but in the future, I plan to add options to convert photos into more formats. Currently, the app converts images to 24-bit BMP with a 7-color palette. The application was written in Python using the [customtkinter](https://github.com/TomSchimansky/CustomTkinter) UI-library, conversion utilizes the Pillow library, and you can take a closer look at converter here: [Converter.py](https://github.com/TheFlashes/eInkPhotoConverter/blob/main/src/utils/Converter.py). I based my work on the converter used for [PhotoPainter](https://www.waveshare.com/wiki/PhotoPainter), however, I have made improvements and added new features.
 
 ## Installation
 
